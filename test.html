@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+
+
+</head>
+<body>
+    <script type="text/javascript">
+        
+        fetch("https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json")
+        .then(response => response.json())
+        .then(json => json.members)
+        .then(members => console.log(members[0]))
+        // .then(member => console.log(member));
+
+        
+        fetch("https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json")
+        .then(function(response) {
+            response.json().then(function (json) {
+                console.log("1" + json);
+            });
+        });
+    </script>
+</body>
