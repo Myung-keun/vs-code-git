@@ -1,2 +1,3 @@
-html{margin:0; padding:0;}
-.table1{border:1; bordercolor:rgb(22, 22, 22); width:1000px; height:1200px; align:center;}
+html{}
+.text1{align:center;}
+table{border:1; bordercolor:blue; width:1000px; height:1200px; align:center; position:absolute;}
