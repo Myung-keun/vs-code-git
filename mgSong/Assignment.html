@@ -2,32 +2,52 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" href="C:\Javascript\techgroupseminar\techgroupseminar\mgSong/Assignment.css">
+        <link rel="stylesheet" href=
+        "C:\Javascript\techgroupseminar\techgroupseminar\mgSong/Assignment.css">
         <title>식당 선택</title>       
     </head>
     <body>
-        <h1>식당 선택 프로그램</h1>
-        <div>
-            <form>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>식당 이름</td>
-                            <td>식당 위치</td>
-                            <td>음식 종류</td>
-                            <td>테이블 수</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>식당</td>
-                            <td>강남구 어디</td>
-                            <td>퓨전 일식</td>
-                            <td>10개</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+        
+        <div class="wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <td colspan="4"><h1>식당 선택 프로그램</h1></td>
+                    </tr>
+                    <tr>
+                        <td>식당 이름</td>
+                        <td>식당 위치</td>
+                        <td>음식 종류</td>
+                        <td>테이블 수</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="Select">
+                        <td>식당</td>
+                        <td>강남구 어디</td>
+                        <td>퓨전 일식</td>
+                        <td>10개</td>
+                    </tr>
+                    <tr>
+                        <form>
+                            <td><input id="rName" type="text" placeholder="추가할 식당?"></td>
+                        </form>
+                        <form>
+                            <td><input id="rAddress" type="text" placeholder="식당의 위치?"></td>
+                        </form>
+                        <form>
+                            <td><input id="rType" type="text" placeholder="무엇을 파나요?"></td>
+                        </form>
+                        <form>
+                            <td><input id="rTable" type="text" placeholder="좌석수?"></td>
+                        </form>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="button" value="ADD"></td>
+                        <td colspan="2"><input type="button" value="SELECT"></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </body>
 </html>

@@ -6,11 +6,15 @@ body{
     line-height: 16px;
 }
 td{
+    text-align: center;
     border: 1px solid #000;
 }
 thead{
     background-color: orange;
 }
-tbody tr:hover{
+tbody .Select:hover{
     background-color: pink;
 } 
+input{
+    width: 100px;
+}
