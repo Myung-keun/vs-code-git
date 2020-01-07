@@ -1,3 +1,6 @@
 html{}
-.text1{align:center;}
-table{border:1; bordercolor:blue; width:1000px; height:1200px; align:center; position:absolute;}
+.text1{align:center; margin:0 auto;width:445px; text-align:center;}
+table{border:1px; border:1px solid blue; width:1000px; height:500px;
+    margin:0 auto; text-align:center;border-collapse:collapse;
+}
+th, td{border:1px solid blue;}
