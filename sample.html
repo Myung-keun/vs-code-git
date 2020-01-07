@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8" />
-    <style>
-        thead {background-color: gray;}
-
-        tbody tr:hover {background-color: skyblue;}
-        tbody tr.selected {background-color: orange;}
-
-        td {border:solid 1px;}
-    </style>
     <title>HTML 샘플 페이지</title>
+    <link rel="stylesheet" href="C:\Javascript\techgroupseminar\techgroupseminar\mgSong/sample.css">
 </head>
 <body>
     <h1>식당 선택 프로그램</h1>
@@ -159,29 +152,9 @@
     <br /> <br />
     ** 자유 개발사항 ** <br />
     1. 자유롭게 포맷 변경 <br />
-    2. js/css 파일 분리 <br />
+    2. js/css 파일 분리 (완료) <br />
     3. localstorage 이용하여 식당 리스트 저장, 저장된 리스트 배열로 가져와서 화면에 보여주기 (함수로 작성) <br />
     4. 리스트 추가 기능(입력 폼 작성) <br />
 
-   <script>
-        document.querySelectorAll("#restaurantTable tbody tr").forEach(function (tr) {
-            tr.addEventListener("click", function() {
-                tr.className = tr.className == "" ? "selected" : "";
-            });
-        });
-
-        document.querySelector("#selectButton").addEventListener("click", function() {
-            var selectedRows;
-
-            if(document.querySelectorAll("tr.selected").length > 0)
-                selectedRows = document.querySelectorAll("tr.selected");
-            else
-                selectedRows = document.querySelectorAll("#restaurantTable tbody tr");
-
-            var menuCount = selectedRows.length;
-            var rand = Math.floor(Math.random() * menuCount);
-
-            document.querySelector("#resultText").innerHTML = "오늘은 " + selectedRows[rand].querySelector("td").innerText + "(으)로 갑시다!";
-        });
-    </script>
+   <script src="sample.js"></script>
 </body>
