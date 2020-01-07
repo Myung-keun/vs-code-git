@@ -19,18 +19,6 @@ function add_row() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 function HighlightRow(obj){
 	var table = document.getElementClassName("table1")[0];
 	var tr = table.getElementsByTagName("tr");
