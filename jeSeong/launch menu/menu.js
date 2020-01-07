@@ -32,11 +32,10 @@ function add_row() {
 
 
 function HighlightRow(obj){
-
-	var table = document.getElementId("table");
-	var td = table.getElementsByTagName("td");
-	for(var i=0; i<td.length; i++){
-		td[i].style.background = "white";
+	var table = document.getElementClassName("table1")[0];
+	var tr = table.getElementsByTagName("tr");
+	for(var i=0; i<tr.length; i++){
+		tr[i].style.background = "orange";
 	}
 	obj.style.backgroundColor = "blue";
 
