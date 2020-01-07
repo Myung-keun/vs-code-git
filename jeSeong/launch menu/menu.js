@@ -1,9 +1,9 @@
 function HighlightRow(obj){
 
 	var table = document.getElementId("table");
-	var tr = table.getElementsByTagName("tr");
-	for(var i=0; i<tr.length; i++){
-		tr[i].style.background = "white";
+	var td = table.getElementsByTagName("td");
+	for(var i=0; i<td.length; i++){
+		td[i].style.background = "white";
 	}
 	obj.style.backgroundColor = "blue";
 
