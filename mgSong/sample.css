@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+thead {background-color: gray;}
+
+tbody tr:hover {background-color: skyblue;}
+tbody tr.selected {background-color: orange;}
+
+td {border:solid 1px;}
