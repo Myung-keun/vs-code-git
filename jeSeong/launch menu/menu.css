@@ -1,0 +1,10 @@
+html{}
+.text1{align:center; margin:0 auto;width:445px; text-align:center; padding-top:20px;}
+table{border-top:1px solid rgb(184, 80, 106); width:1000px; height:500px;
+    margin:0 auto; text-align:center;border-collapse:collapse; padding-bottom:20px;
+}
+th, td{border:1px solid rgb(184, 80, 106); padding:10px;}
+.table1 tr:nth-child(1){color:white; background:rgb(236, 119, 149);}
+.but{margin:0 auto; width:50%; text-align:left; margin-top:15px;}
+.button{margin:0 auto; width:50%; text-align:center; margin-top:15px;}
+.button input{padding:5px; width:50%; font-size:15px;}
