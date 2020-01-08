@@ -8,7 +8,7 @@ function addRow(){
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
     var cell6 = row.insertCell(5);
-    cell1.innerHTML = '항목'; //항목 추가했을때 안에 내용이 들어가게 해야함,,//
+    cell1.innerHTML = '항목'; //항목 추가했을때 안에 내용을 쓸수있게 해야함,,//
     cell2.innerHTML = '항목';
 }
 
@@ -22,20 +22,14 @@ function delRow(){
 
 
 
-//테이블 칸 클릭되게하는 함수
-function HighLightRow(obj){
-    var table = document.getElementsByClassName(".table1");
-    var tr = table.getElementsByTagName("tr");
-    for(var i =0; i<tr.length; i++){
-        tr[i].style.background = "pink";
+
+
+//테이블 칸이 클릭 되게하는 함수
+window.onload = function(){
+    var cli = document.getElementsById('title1').onclick = function(){
+        this.style.backgroundcolor = 'red';
     }
-    obj.style.backgroundcolor = "pink";
-}
-
-
-
-
-
+};
 
 
 
