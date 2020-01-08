@@ -7,13 +7,11 @@
         <title>식당 선택</title>       
     </head>
     <body>
-        
+        <h1>식당 선택 프로그램</h1>
         <div class="wrap">
             <table>
                 <thead>
-                    <tr>
-                        <td colspan="4"><h1>식당 선택 프로그램</h1></td>
-                    </tr>
+                    
                     <tr>
                         <td>식당 이름</td>
                         <td>식당 위치</td>
@@ -21,26 +19,29 @@
                         <td>테이블 수</td>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="Select">
-                        <td>식당</td>
-                        <td>강남구 어디</td>
-                        <td>퓨전 일식</td>
-                        <td>10개</td>
+                <tbody class="Select">
+                    <tr>
+                        <td>식당 이름</td>
+                        <td>식당 위치</td>
+                        <td>음식 종류</td>
+                        <td>테이블 수</td>
                     </tr>
                     <tr>
-                        <form class="name">
-                            <td><input id="rName" type="text" placeholder="추가할 식당?" /></td>
-                        </form>
-                        <form class="address">
-                            <td><input id="rAddress" type="text" placeholder="식당의 위치?" /></td>
-                        </form>
-                        <form class="type">
-                            <td><input id="rType" type="text" placeholder="무엇을 파나요?" /></td>
-                        </form>
-                        <form class="table">
-                            <td><input id="rTable" type="text" placeholder="좌석수?" /></td>
-                        </form>
+                        <td>식당 이름</td>
+                        <td>식당 위치</td>
+                        <td>음식 종류</td>
+                        <td>테이블 수</td>
+                    </tr>
+                    <tr>
+                        <td>식당 이름</td>
+                        <td>식당 위치</td>
+                        <td>음식 종류</td>
+                        <td>테이블 수</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <form class="add-js"><td colspan="4"><input id="addBtn" type="button" value="ADD"></td></form>
                     </tr>
                     <tr>
                         <td colspan="4"><input type="button" value="SELECT"></td>
@@ -48,6 +49,7 @@
                 </tbody>
             </table>
         </div>
-        <script src="name.js"></script>
+        <script src="addName.js"></script>
+        <script src="click.js"></script>
     </body>
 </html>
