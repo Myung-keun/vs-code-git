@@ -1,36 +1,47 @@
 @charset "UTF-8";
 
 body{
-    font-family: '나눔고딕',NanumGothic, Dotum, '돋움', sans-serif;
+    font-family: '나눔고딕',NanumGothic, sans-serif;
     line-height: 16px;
 }
 body, ul, ol, li, div, a {
     margin:0;
     padding:0;
 }
+h1{ text-align: center;}
 ul{
     display: table;
     width: 100%;
     table-layout: fixed;
     background:white;
 }
-body .category{
+ul.category{
     background-color: orange;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
 }
+
 li{   
     display: table-cell;
     height: 36px;    
-    border: 1px solid black;
-    font-size: 12px;
+        
     line-height: 36px;
     color: #333;
     text-align: center;
+}
+.listBody li{
+    font-size: 12px;
+    border: 1px solid black;
 }
 .listBody ul:hover{
     background-color: pink;
 }
 .listBody .selected{
     background-color: peachpuff;
+}
+.listLeg li{
+    border: 1px solid black;
+}
+.info{
+    
 }

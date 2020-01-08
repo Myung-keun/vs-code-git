@@ -12,20 +12,21 @@ function saveItems(){
 }
 
 
-if(inserted.querySelectorAll("li").length < 5){
-  console.log("count");
-  } else{
-      const newUl = document.querySelector("div .insert");
-      const ul = document.createElement("ul");
-      newUl.appendChild(ul);
-      ul.className='inserted';
-  }
+// if(inserted.querySelectorAll("li").length > 5){
+//   console.log("count");
+//   } else{
+//       const newUl = document.querySelector("div .insert");
+//       const ul = document.createElement("ul");
+//       newUl.appendChild(ul);
+//       ul.className='inserted';
+//   }
 
 function paintTable(text) {
   const li = document.createElement("li");
   const span = document.createElement("span");
   const newId = items.length + 1;
 
+  
   span.innerText = text;
   li.appendChild(span);
   li.id = newId;
@@ -36,7 +37,6 @@ function paintTable(text) {
   };
   items.push(itemsObj);
   saveItems();
-
 }
 
 //Enter 입력시에 자동 새로고침 방지
@@ -51,7 +51,7 @@ function handleSubmit(event){
 function loadItems(){
   const loadedItems = localStorage.getItem(ITEM_LS);
   if(loadedItems!==null){
-    const parseItems = JSON.parse(loadedItems);
+    const parseItems = JSON.parse(loadedItems);  
     parseItems.forEach(function(items){
       paintTable(items.text);
     });
