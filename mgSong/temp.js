@@ -6,16 +6,16 @@ const ITEM_LS = 'items';
 
 let items = [];
 
+//local storage에 Key: items, Value: items[] 생성.
 function saveItems(){
   localStorage.setItem(ITEM_LS, JSON.stringify(items));
 }
-
+ 
 function paintTable(text){
   const li = document.createElement("li");
   const span = document.createElement("span");
   const newId = items.length +1;
   
-
   span.innerText = text;
   li.appendChild(span);
   li.id = newId;
@@ -26,6 +26,12 @@ function paintTable(text){
   };
   items.push(itemsObj); 
   saveItems();
+
+  if(inserted.querySelectorAll("li").length < 5){
+    console.log("count");
+    } else{
+        localStorage.setItem('items2', JSON.stringify(items));
+    }
 }
 
 function handleSubmit(event){
@@ -47,7 +53,7 @@ function loadItems(){
 
 function init(){
     loadItems();
-    form.addEventListener("submit", handleSubmit);
+    form.addEventListener("submit", handleSubmit);    
 }
 
 init();
