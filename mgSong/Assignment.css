@@ -5,21 +5,29 @@ body{
     font-size: 14px;
     line-height: 16px;
 }
-table, td{
+body, ul, ol, li, div, a {
+    margin:0;
+    padding:0;
+}
+ul{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    background:white;
+}
+.category{background-color: orange;}
+li{   
+    display: table-cell;
+    height: 36px;    
+    border: 1px solid black;
+    font-size: 12px;
+    line-height: 36px;
+    color: #333;
     text-align: center;
-    border: 1px solid #000;
 }
-thead{
-    font-size: 18px;
-    font-weight: bold;
-    background-color: orange;
-}
-.Select tr:hover{
+ul:hover{
     background-color: pink;
 }
-.Select .Selected{
-    background-color: plum;
-}
-input{
-    width: 100px;
+.selected{
+    background-color: peachpuff;
 }
