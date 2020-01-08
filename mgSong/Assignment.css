@@ -28,9 +28,9 @@ li{
     color: #333;
     text-align: center;
 }
-ul:hover{
+.listBody ul:hover{
     background-color: pink;
 }
-.selected{
+.listBody .selected{
     background-color: peachpuff;
 }
