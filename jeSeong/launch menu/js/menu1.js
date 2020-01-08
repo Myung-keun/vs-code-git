@@ -8,14 +8,15 @@ function addRow(){
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
     var cell6 = row.insertCell(5);
-
+    cell1.innerHTML = '항목'; //항목 추가했을때 안에 내용이 들어가게 해야함,,//
+    cell2.innerHTML = '항목';
 }
 
 function delRow(){
     var my_tbody = document.getElementById('my_tbody');
     if (my_tbody.rows.length < 1) return;
     //my_tbody.deleteRow(0);//
-    my_tbody.deleteRow(my_tbody.rows.length-1);
+    my_tbody.deleteRow(my_tbody.rows.length-1); //하단에서부터 삭제인데 왜 상단에서부터 삭제되는?//
 }
 
 
