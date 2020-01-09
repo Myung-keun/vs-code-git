@@ -7,9 +7,7 @@ const form = document.querySelector(".submits"),
 
 const ITEM_LS = 'items';
 
-
 let items = [];
-
 let type =[];
 let tables =[];
 
@@ -24,13 +22,15 @@ function saveItems(){
 function paintTable(text) {
   const li = document.createElement("li");
   const span = document.createElement("span");
-  li.id = '1';
+  const newId = items.length + 1;
 
+  //li.id = newId;
   span.innerText = text;
   li.appendChild(span);
   inserted.appendChild(li);
   const itemsObj = {
     text: text,
+    id: newId
   };
   items.push(itemsObj);
   saveItems();

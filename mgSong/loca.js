@@ -14,13 +14,15 @@ function saveLocations(){
 function paintLocation(location){
     const li = document.createElement("li");
     const span = document.createElement("span");
-    li.id='2';
-  
+    const newId = locas.length + 1;
+    
+    //li.id = newId;
     span.innerText = location;
     li.appendChild(span);
     inserted.appendChild(li);
     const locationsObj = {
-      locations: location
+      locations: location,
+      id: newId
     };
     locas.push(locationsObj);
     saveLocations();
@@ -40,7 +42,7 @@ function loadLoca(){
       parseLoca.forEach(function(locations){
         paintLocation(locations.locations);
         console.log(locations);
-      })
+      });
     }
   }
 
