@@ -1,7 +1,13 @@
 const form = document.querySelector(".submits"),
   form2 = document.querySelector(".submits2")
+
   info = form.querySelector(".info"),
   loca = form2.querySelector(".loca"),
+
+  infoBtn = form.querySelector("button"),
+  locaBtn = form2.querySelector("button"),
+
+  //insert = document.querySelectorAll(".inserted");
   inserted = document.querySelector(".js-inserted");
 
 const ITEM_LS = 'items';
@@ -26,15 +32,12 @@ function saveLocations(){
 function paintTable(text) {
   const li = document.createElement("li");
   const span = document.createElement("span");
-  //const newId = items.length + 1;
 
   span.innerText = text;
   li.appendChild(span);
-  //li.id = newId;
   inserted.appendChild(li);
   const itemsObj = {
     text: text,
-    //id: newId
   };
   items.push(itemsObj);
   saveItems();
@@ -56,7 +59,7 @@ function paintLocation(location){
 
 //Enter 입력시에 자동 새로고침 방지
 function handleSubmit(event){
-  event.preventDefault();
+  event.preventDefault(); //새로고침 방지
   const currentValue = info.value; //현재 textbox에 들어있는 내용 
   paintTable(currentValue); //현재내용 li생성시 parameter(내용)으로 전달
   info.value = ""; //textbox는 다시 공백으로 초기화  
@@ -96,8 +99,8 @@ function loadLoca(){
 function init(){
     loadItems(); //원래 local storage에 있는 text들을 출력
     loadLoca();
-    form.addEventListener("submit", handleSubmit);
-    form2.addEventListener("submit",handleSubmit2);
+    infoBtn.addEventListener("click", handleSubmit);
+    locaBtn.addEventListener("click",handleSubmit2);
     //Enter입력시 handleSubmit실행
 }
 
