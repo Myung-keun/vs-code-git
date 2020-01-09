@@ -1,11 +1,53 @@
-.text1{align:center; margin:0 auto;width:445px; text-align:center; padding-top:20px;}
-table{border-top:1px solid rgb(138, 59, 79); width:1000px; height:500px;
-    margin:0 auto; text-align:center;border-collapse:collapse; padding-bottom:20px;
+.text1{
+    align:center; 
+    margin:0 auto;
+    width:445px; 
+    text-align:center; 
+    padding-top:20px;}
+
+table{
+    border-top:1px solid rgb(138, 59, 79); 
+    width:1000px; 
+    height:500px;
+    margin:0 auto; 
+    text-align:center;
+    border-collapse:collapse; 
+    padding-bottom:20px;
 }
-th,td{border:1px solid rgb(138, 59, 79); padding:10px;}
-#table1 td{border:1px solid rgb(138, 59, 79); padding:10px; }
-.table #my_tbody th, td{border:1px solid rgb(138, 59, 79); padding:20px;}
-#title1{color:white; background:rgb(221, 102, 132); padding:20px;}
-.but{margin:0 auto; width:50%; text-align:left; margin-top:15px;}
-.button{margin:0 auto; width:50%; text-align:center; margin-top:15px;}
-.button input{padding:5px; width:50%; font-size:15px;}
+
+th,td{
+    border:1px solid rgb(138, 59, 79); 
+    padding:10px;}
+
+#table1 td{
+    border:1px solid rgb(138, 59, 79); 
+    padding:10px; }
+
+.table #my_tbody th, td{
+    border:1px solid rgb(138, 59, 79); 
+    padding:20px;}
+
+.table1 td.active{
+    background:rgb(233, 134, 159);}
+
+#title1{
+    color:white; 
+    background:rgb(221, 102, 132); 
+    padding:20px;}
+
+.but{
+    margin:0 auto; 
+    width:50%; 
+    text-align:left; 
+    margin-top:15px;}
+
+.button{
+    margin:0 auto; 
+    width:50%; 
+    text-align:center;
+     margin-top:15px;}
+
+.button input{
+    padding:5px; 
+    width:50%; 
+    font-size:15px;}
