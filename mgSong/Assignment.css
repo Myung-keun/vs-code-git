@@ -42,6 +42,7 @@ li{
 .listLeg li{
     border: 1px solid black;
 }
+
 .info{
-    
+    width: 150px;
 }
