@@ -8,12 +8,12 @@ function addRow(){
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
     var cell6 = row.insertCell(5);
-    cell1.innerHTML = '항목'; //항목 추가했을때 안에 내용을 쓸수있게 해야함,,//
-    cell2.innerHTML = '항목';
-    cell3.innerHTML = '';
-    cell4.innerHTML = '';
-    cell5.innerHTML = '';
-    cell6.innerHTML = '';
+    cell1.innerHTML = '종류'; //항목 추가했을때 안에 내용을 쓸수있게 해야함,,//
+    cell2.innerHTML = '<input type = text>';
+    cell3.innerHTML = '<input type = text>';
+    cell4.innerHTML = '<input type = text>';
+    cell5.innerHTML = '<input type = text>';
+    cell6.innerHTML = '<input type = text>';
 }
 
 function delRow(){
@@ -29,12 +29,35 @@ function delRow(){
 
 
 //테이블 칸 클릭 되게하는 이벤트
-function cli(){
-    var mouseclick = document.getElementsByTagName('tr').onclick = function(){
-        backgroundcolor = 'red';
-    }
-    cli();
-};
+//구글링 검색해서 클릭이벤트 전에 alert 창으로 띄워보는거 해봤는데 안됐어요ㅜㅜ 
+
+// document.querySelector('.table1').addEventListener('click', function(){
+//     alert('click');
+// }); alert창 뜨게 하려고 한건데 창이 안뜹니다.(1)
+
+// window.onloag = function(){
+//     var obj = document.getElementsByClassName('.table1');
+//     obj.onclick = function(){
+//         var mg = 'hello';
+//         alert(mg);
+//     }
+// }; alert창 뜨게 하려고 한건데 창이 안뜹니다.(2)
+
+// var clicks = document.getElementsByClassName(".table1");
+// clicks.addEventListener("click", clicksclick,false);
+// function clicks(){
+//     alert('click!');
+// } alert창 뜨게 하려고 한건데 창이 안뜹니다.(3)
+
+
+// document.addElementClassName('.table1').addEventListener('click',function(){
+//     ('.table1 td.active')
+// } 클릭 이벤트 우선 여기까지 해봤습니다.
+
+
+
+
+
 
 
 
@@ -44,15 +67,11 @@ function cli(){
 
 // localStorage.test = '123';
 // localStorage.setltem('test','123');
-
-
 // localStorage.test;
 // localStorage.getltem('test');
 
     localStorage.test = '123';
     localStorage.setltem('test','123');
-
-
     localStorage.test;
     localStorage.getltem('test');
 
@@ -64,6 +83,7 @@ function saveElement(){
     window.localStorage.setItem('name','ddd');
     return true;
 } //로컬 스토리지에 데이터를 저장하는 코드
+
 
 function localElement(){
     if(!storageSupport()) {
