@@ -1,20 +1,18 @@
 const form = document.querySelector(".submits"),
   info = form.querySelector(".info"),
-  infoBtn = form.querySelector("button"),
+  infoBtn = form.querySelector("button")
 
   //insert = document.querySelector(".inserted"),
   inserted = document.querySelector(".js-inserted");
 
 const ITEM_LS = 'items';
 
-let items = [];
-let type =[];
+let items = []
 let tables =[];
 
 //local storage에 Key: items, Value: items[] 생성.
 function saveItems(){
   localStorage.setItem(ITEM_LS, JSON.stringify(items)); 
-  localStorage.setItem('type',JSON.stringify(type));
   localStorage.setItem('tables',JSON.stringify(tables));
 }
 
