@@ -21,6 +21,7 @@ function saveItems(){
 //       ul.className='inserted';
 //   }
 
+//ul에 li를 추가해주는 함수.
 function paintTable(text) {
   const li = document.createElement("li");
   const span = document.createElement("span");
@@ -65,3 +66,5 @@ function init(){
 }
 
 init();
+
+//loadItems()와 paintTable()함수를 수정해야 원하는대로 1행 4열씩 추가 가능할 듯.
