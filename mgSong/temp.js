@@ -8,12 +8,10 @@ const form = document.querySelector(".submits"),
 const ITEM_LS = 'items';
 
 let items = []
-let tables =[];
 
 //local storage에 Key: items, Value: items[] 생성.
 function saveItems(){
   localStorage.setItem(ITEM_LS, JSON.stringify(items)); 
-  localStorage.setItem('tables',JSON.stringify(tables));
 }
 
 //ul에 li를 추가해주는 함수.
