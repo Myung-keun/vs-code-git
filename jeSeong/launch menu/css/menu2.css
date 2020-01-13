@@ -23,11 +23,11 @@ th,td{
     border:1px solid rgb(138, 59, 79); 
     padding:10px; }
 
-.table #my_tbody th, td{
+#table #my_tbody th, td{
     border:1px solid rgb(138, 59, 79); 
     padding:20px;}
 
-.table1 td.active{
+#table1 td.active{
     background:rgb(233, 134, 159);}
 
 #title1{

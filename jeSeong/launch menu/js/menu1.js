@@ -10,10 +10,10 @@ function addRow(){
     var cell6 = row.insertCell(5);
     cell1.innerHTML = '종류'; //항목 추가했을때 안에 내용을 쓸수있게 해야함,,//
     cell2.innerHTML = '<input type = text>';
-    cell3.innerHTML = '<input type = text>';
-    cell4.innerHTML = '<input type = text>';
-    cell5.innerHTML = '<input type = text>';
-    cell6.innerHTML = '<input type = text>';
+    cell3.innerHTML = '';
+    cell4.innerHTML = '';
+    cell5.innerHTML = '';
+    cell6.innerHTML = '';
 }
 
 function delRow(){
@@ -52,7 +52,12 @@ function delRow(){
 
 // document.addElementClassName('.table1').addEventListener('click',function(){
 //     ('.table1 td.active')
-// } 클릭 이벤트 우선 여기까지 해봤습니다.
+// }
+
+var t = document.getElementsByClassName('.table1');
+t.addEvantListener('click', function(event){
+    alert('Hello world, '+event.target.value);
+});
 
 
 
