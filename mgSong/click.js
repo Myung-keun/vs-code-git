@@ -1,4 +1,5 @@
-
+//listBody 클래스에서 ul태그의 클래스 이름이 
+//있으면 -> 공백으로, 없으면 ->selected로 변경
 document.querySelectorAll(".listBody ul").forEach(function(ul){
     ul.addEventListener("click", function(){
         ul.className = ul.className == "" ? "selected" : "";
@@ -8,6 +9,7 @@ document.querySelectorAll(".listBody ul").forEach(function(ul){
 const select = document.querySelector("#selectBtn");
 const add = document.querySelector("#addBtn");
 const insert = document.querySelector(".insert");
+const addResult = document.querySelector("#addResult");
 
 //select버튼에 click이벤트시 작동할 함수.
 function init(){
@@ -34,8 +36,14 @@ function init(){
 
 function addEvent(){
     const ul = document.createElement("ul");
+    const span = document.createElement("span");
+
     ul.className = "inserted";
     insert.appendChild(ul);
+
+    //span.innerText = "정보추가 항목에 내용을 입력하고 Enter를 누르세요."
+    //addResult.appendChild(document.createElement("br"));
+    //addResult.appendChild(span);   
     console.log("addBtn is clicked");
 }
 

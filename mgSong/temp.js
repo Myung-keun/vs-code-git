@@ -1,72 +1,46 @@
 const form = document.querySelector(".submits"),
-  form2 = document.querySelector(".submits2")
   info = form.querySelector(".info"),
-  loca = form2.querySelector(".loca"),
+  infoBtn = form.querySelector("button")
+  insert2 = document.querySelector(".insert"),
   inserted = document.querySelector(".js-inserted");
 
 const ITEM_LS = 'items';
-const LOCA_LS = 'locations';
 
-let items = [];
-let locas =[];
-let type =[];
-let tables =[];
+let items = []
 
 //local storage에 Key: items, Value: items[] 생성.
 function saveItems(){
   localStorage.setItem(ITEM_LS, JSON.stringify(items)); 
-  localStorage.setItem('type',JSON.stringify(type));
-  localStorage.setItem('tables',JSON.stringify(tables));
-}
-function saveLocations(){
-  localStorage.setItem(LOCA_LS,JSON.stringify(locas));
 }
 
 //ul에 li를 추가해주는 함수.
 function paintTable(text) {
+  const ul = document.createElement("ul");
   const li = document.createElement("li");
   const span = document.createElement("span");
-  //const newId = items.length + 1;
+  const newId = items.length + 1;
+
+  //li.id = newId;
+  ul.className = "inserted_ul";
 
   span.innerText = text;
+  insert2.appendChild(ul);
   li.appendChild(span);
-  //li.id = newId;
-  inserted.appendChild(li);
+  ul.appendChild(li);
   const itemsObj = {
     text: text,
-    //id: newId
+    id: newId
   };
   items.push(itemsObj);
   saveItems();
 }
 
-function paintLocation(location){
-  const li = document.createElement("li");
-  const span = document.createElement("span");
-
-  span.innerText = location;
-  li.appendChild(span);
-  inserted.appendChild(li);
-  const locationsObj = {
-    locations: location
-  };
-  locas.push(locationsObj);
-  saveLocations();
-}
-
 //Enter 입력시에 자동 새로고침 방지
 function handleSubmit(event){
-  event.preventDefault();
+  event.preventDefault(); //새로고침 방지
   const currentValue = info.value; //현재 textbox에 들어있는 내용 
   paintTable(currentValue); //현재내용 li생성시 parameter(내용)으로 전달
   info.value = ""; //textbox는 다시 공백으로 초기화  
-}
-
-function handleSubmit2(event){
-  event.preventDefault();
-   const currentLoca = loca.value;
-   paintLocation(currentLoca);
-   loca.value="";
 }
 
 //페이지 시작시 localS에 있는 item들 가져와서 새로운 행을 만든 뒤 출력해줌.
@@ -80,24 +54,11 @@ function loadItems(){
     });
   }
 }
-function loadLoca(){
-  const loadedLoca = localStorage.getItem(LOCA_LS);
-  if(loadedLoca !== null){
-    const parseLoca = JSON.parse(loadedLoca);
-    parseLoca.forEach(function(locations){
-      paintLocation(locations.locations);
-      console.log(locations);
-    })
-  } else{
-    console.log("location없음");
-  }
-}
+
 
 function init(){
     loadItems(); //원래 local storage에 있는 text들을 출력
-    loadLoca();
-    form.addEventListener("submit", handleSubmit);
-    form2.addEventListener("submit",handleSubmit2);
+    infoBtn.addEventListener("click", handleSubmit);
     //Enter입력시 handleSubmit실행
 }
 

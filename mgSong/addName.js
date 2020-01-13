@@ -1,3 +1,6 @@
+//현재 사용하지 않는 js파일입니다.
+
+
 const addTable = document.querySelector(".insert");
 const submits = document.querySelector(".submits");
 const info = document.querySelector(".info");
