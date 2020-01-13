@@ -1,8 +1,7 @@
 const form = document.querySelector(".submits"),
   info = form.querySelector(".info"),
   infoBtn = form.querySelector("button")
-
-  //insert = document.querySelector(".inserted"),
+  insert2 = document.querySelector(".insert"),
   inserted = document.querySelector(".js-inserted");
 
 const ITEM_LS = 'items';
@@ -16,14 +15,18 @@ function saveItems(){
 
 //ul에 li를 추가해주는 함수.
 function paintTable(text) {
+  const ul = document.createElement("ul");
   const li = document.createElement("li");
   const span = document.createElement("span");
   const newId = items.length + 1;
 
   //li.id = newId;
+  ul.className = "inserted_ul";
+
   span.innerText = text;
+  insert2.appendChild(ul);
   li.appendChild(span);
-  inserted.appendChild(li);
+  ul.appendChild(li);
   const itemsObj = {
     text: text,
     id: newId
