@@ -3,18 +3,12 @@
 
 
 //임시로 LS에 세 가지 value값들 저장해봄.
-const name = 'LS_식당이름';
-const loca = 'LS_식당위치';
-const menu = 'LS_식당메뉴';
+ const name = null;
+ const loca = null;
+ const menu = null;
 
 let storageValue = [];
-const tempObj = {
-    resName: name,
-    resLoca: loca,
-    resMenu: menu
-};
-storageValue.push(tempObj);
-storageValue.push(tempObj);
+
 
 function printTable(LSvalue){
     //loadLS에서 JSON.parse()로 LS의 내용을 전달받았을때, tbody에 tr&td*3 한 세트 생성 및 출력
@@ -32,6 +26,17 @@ function printTable(LSvalue){
     td1.innerText=LSvalue.resName;
     td2.innerText=LSvalue.resLoca;
     td3.innerText=LSvalue.resMenu;
+    
+    const tempObj = {
+        resName: name,
+        resLoca: loca,
+        resMenu: menu
+    };
+    tempObj.resName=LSvalue.resName;
+    tempObj.resLoca=LSvalue.resLoca;
+    tempObj.resMenu=LSvalue.resMenu;
+    storageValue.push(tempObj);
+    saveToLS();
 }
 
 function saveToLS(){
@@ -77,13 +82,21 @@ function makeAddTable(){
     td3.appendChild(input3);
     tr.appendChild(td4);
     td4.appendChild(submitBtn);
+
+    addedTable.querySelector("button").addEventListener("click",function(event){
+        event.preventDefault();        
+        const tempObj = {
+            resName: name,
+            resLoca: loca,
+            resMenu: menu
+        };
+        tempObj.resName = input1.value;
+        tempObj.resLoca = input2.value;
+        tempObj.resMenu = input3.value;
+        const arg = tempObj;
+        printTable(arg);
+    })
+    
 }
 
-saveToLS();
 loadLS();
-
-
-
-/* tr을 클릭하여 선택 또는 해제 && 선택된 tr에서 랜덤으로 식당의 정보를 alert로 보여주는 함수*/
-// var cli = 0;
-// function
