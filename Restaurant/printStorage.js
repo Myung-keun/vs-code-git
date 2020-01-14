@@ -59,6 +59,7 @@ const addBtn = document.querySelector("button");
 const addedTable = document.querySelector(".addedTable");
 addBtn.addEventListener("click", makeAddTable);
 
+//+버튼 클릭시 실행될 함수: 새로운 테이블(추가할 텍스트 입력 창) 및 추가button 생성
 function makeAddTable(){
     const table = document.createElement("table");
     const tr = document.createElement("tr");
@@ -83,6 +84,12 @@ function makeAddTable(){
     tr.appendChild(td4);
     td4.appendChild(submitBtn);
 
+    // 추가button 클릭할 시 각각의 text창의 내용(이름, 주소, 메뉴)를 임시객체 tempObj에
+    // 저장시킨 후 printTable에 임시객체를 전달. printTable은 전달받은 객체를 바탕으로
+    // printTable을 만든 뒤 storageValue[]에 전달받은 객체내용을 저장 -> sValue[]에
+    // 존재하는 내용들은 saveLS()함수를 통해 localStorage에 저장된다. 이후 새로고침을
+    // 하더라도 loadLS() -> printTable() -> saveLS() 를 통해 추가button을 눌러도 sValue[]
+    // 에 0번 인덱스부터 다시 처음부터 저장하는 것이 아니라 추가로 쌓아가면서 저장 가능
     addedTable.querySelector("button").addEventListener("click",function(event){
         event.preventDefault();        
         const tempObj = {
