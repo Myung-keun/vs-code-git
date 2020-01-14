@@ -1,0 +1,10 @@
+table {
+    border:1px solid rgb(73, 73, 73);
+    margin:0 auto; 
+    text-align:center;
+    border-collapse:collapse;
+}
+
+
+tbody tr.selected {background-color: orange;}/*선택된 tr색 변경 */
+
