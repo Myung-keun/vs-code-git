@@ -55,7 +55,7 @@ function loadLS(){
     });
 }
 
-const addBtn = document.querySelector("button");
+const addBtn = document.querySelector("#plus");
 const addedTable = document.querySelector(".addedTable");
 addBtn.addEventListener("click", makeAddTable);
 

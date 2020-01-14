@@ -5,3 +5,11 @@ document.querySelectorAll("tbody tr").forEach(function(tr){
     });
 });
 
+//X버튼 클릭시 선택된 tr을 삭제하는 함수 제작 예정.
+const deleteBtn = document.querySelector("#delete");
+deleteBtn.addEventListener("click", deleteRes);
+
+function deleteRes(){
+    
+    console.log("delete is complete");
+}

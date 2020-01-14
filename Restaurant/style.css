@@ -31,9 +31,6 @@ thead {
 
 tbody tr.selected {
     background-color: orange;
-<<<<<<< HEAD
-}
-=======
 
     border-collapse:collapse;
     padding:20px;
@@ -61,4 +58,3 @@ tbody tr.selected {
 
 
 
->>>>>>> 011eeaa2b21bb70f22306b4731a171b1d68b71f6
