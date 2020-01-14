@@ -28,7 +28,7 @@ function printTable(LSvalue){
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
-    
+
     td1.innerText=LSvalue.resName;
     td2.innerText=LSvalue.resLoca;
     td3.innerText=LSvalue.resMenu;
@@ -42,7 +42,6 @@ function saveToLS(){
 function loadLS(){
     //LS에 저장된 resInfo라는 키값을 가진 내용을 loadedInfo에 담아둠.
     const loadedInfo = localStorage.getItem('resInfo'); 
-    if(loadedInfo !== null){
     JSON.parse(loadedInfo).forEach(function(items){
         console.log(items);
         //loadedInfo가 잘 출력되는지 확인.
@@ -50,6 +49,34 @@ function loadLS(){
         //loadedInfo의 값들을 바탕으로 td안에 내용 생성
     });
 }
+
+const addBtn = document.querySelector("button");
+const addedTable = document.querySelector(".addedTable");
+addBtn.addEventListener("click", makeAddTable);
+
+function makeAddTable(){
+    const table = document.createElement("table");
+    const tr = document.createElement("tr");
+    const td1 = document.createElement("td");
+    const td2 = document.createElement("td");
+    const td3 = document.createElement("td");
+    const td4 = document.createElement("td");
+    const input1 = document.createElement("input");
+    const input2 = document.createElement("input");
+    const input3 = document.createElement("input");
+    const submitBtn = document.createElement("button");
+    submitBtn.innerText = '추가';
+
+    addedTable.appendChild(table);
+    table.appendChild(tr);
+    tr.appendChild(td1);
+    td1.appendChild(input1);
+    tr.appendChild(td2);
+    td2.appendChild(input2);
+    tr.appendChild(td3);
+    td3.appendChild(input3);
+    tr.appendChild(td4);
+    td4.appendChild(submitBtn);
 }
 
 saveToLS();
