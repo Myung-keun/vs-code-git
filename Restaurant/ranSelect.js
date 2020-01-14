@@ -9,8 +9,7 @@ document.querySelectorAll("tbody tr").forEach(function(tr){
 const deleteBtn = document.querySelector("#delete");
 deleteBtn.addEventListener("click", deleteRes);
 
-const 
+
 function deleteRes(){
-    
     console.log("delete is complete");
 }
