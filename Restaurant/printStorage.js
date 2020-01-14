@@ -9,6 +9,17 @@
 
 let storageValue = [];
 
+function deleteRes(event){
+    const btn = event.target;
+    const tr = btn.parentNode;
+    document.querySelector("tbody").removeChild(tr);
+    //여기까지가 X버튼 클릭시에 table행 삭제해주는 코드
+    const updateLS = storageValue.filter(function(resId){
+        return resId !== parseInt(tr);
+    });
+    storageValue = updateLS;
+    saveToLS();
+}
 
 function printTable(LSvalue){
     //loadLS에서 JSON.parse()로 LS의 내용을 전달받았을때, tbody에 tr&td*3 한 세트 생성 및 출력
@@ -17,20 +28,26 @@ function printTable(LSvalue){
     const td1 = document.createElement("td");
     const td2 = document.createElement("td");
     const td3 = document.createElement("td");
+    const delBtn = document.createElement("button"); //메뉴 옆에 삭제버튼 생성예정
+    const newId = storageValue.length+1; //retaurant 정보에 고유 id부여
 
     tbody.appendChild(tr);
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
+    tr.appendChild(delBtn);
 
     td1.innerText=LSvalue.resName;
     td2.innerText=LSvalue.resLoca;
     td3.innerText=LSvalue.resMenu;
+    delBtn.innerText="X";
+    delBtn.addEventListener("click", deleteRes);
     
     const tempObj = {
         resName: name,
         resLoca: loca,
-        resMenu: menu
+        resMenu: menu,
+        id: newId
     };
     tempObj.resName=LSvalue.resName;
     tempObj.resLoca=LSvalue.resLoca;
@@ -102,8 +119,7 @@ function makeAddTable(){
         tempObj.resMenu = input3.value;
         const arg = tempObj;
         printTable(arg);
-    })
-    
+    })  
 }
 
 loadLS();
