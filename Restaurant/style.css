@@ -40,9 +40,9 @@ tbody tr.selected {
     border-collapse:collapse;
     padding:20px;
 }
-tbody tr:hover{
+/* tbody tr:hover{
     background-color: yellow;
-}
+} */
 input{
     width: 100px;
 }
@@ -57,18 +57,29 @@ button{
     height:50px;
     text-align:center;
     margin-top: 20px;
+    display:flex;
 }
 
 #clicks{
-    border:1px solid orange;
     color:orange;
     font-weight:bold;
+    text-transform:uppercase;
+    letter-spacing:2.5px;
     border-radius:7px;
     margin:0 auto;
-    background:#fff;
+    background-color:#fff;
+    box-shadow:0px 8px 15px rgba(0,0,0,0.1);
+    cursor:pointer;
+    outline:none;
     width:200px;
     height:50px;
     font-size:16px;
 }
 
+#clicks:hover{
+    background-color:orange;
+    box-shadow:0px 15px 20px rgba(46,229,157,0.4);
+    color:#fff;
+    transform:translate(-7px);
+}
 

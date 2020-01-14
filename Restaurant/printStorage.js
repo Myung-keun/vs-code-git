@@ -15,7 +15,7 @@ function deleteRes(event){
     document.querySelector("tbody").removeChild(tr);
     //여기까지가 X버튼 클릭시에 table행 삭제해주는 코드
     const updateLS = storageValue.filter(function(resId){
-        return resId !== parseInt(tr);
+        return resId.id !== parseInt(tr.id);
     });
     storageValue = updateLS;
     saveToLS();
