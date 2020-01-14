@@ -35,4 +35,34 @@ thead {
 
 tbody tr.selected {
     background-color: orange;
+<<<<<<< HEAD
 }
+=======
+
+    border-collapse:collapse;
+    padding:20px;
+}
+
+thead td{
+    padding:10px;
+}
+
+
+tbody td {
+    border: 1px solid rgb(73, 73, 73);
+    padding:10px;
+}
+
+thead {
+    border:1px solid orange;
+    background-color:orange;
+    color:#fff;
+}
+
+tbody tr.selected {
+    background-color: orange;
+}/*선택된 tr색 변경 */
+
+
+
+>>>>>>> dff89f3b81a9dac6c8f30c17ab202988759909ee
