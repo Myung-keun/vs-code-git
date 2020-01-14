@@ -1,5 +1,4 @@
 .text1{
-    align:center; 
     margin:0 auto;
     width:445px; 
     text-align:center; 
@@ -32,7 +31,4 @@ thead {
 
 tbody tr.selected {
     background-color: orange;
-}/*선택된 tr색 변경 */
-
-
-
+}
