@@ -43,11 +43,20 @@ tbody tr.selected {
 tbody tr:hover{
     background-color: yellow;
 }
+input{
+    width: 100px;
+}
 
-button{
+button{   
     border-radius: 50%;
 }
 
+#clicks{
+    border:1px solid orange;
+    color:orange;
+    font-weight:bold;
+    border-radius:20%;
 
+}
 
 
