@@ -10,12 +10,13 @@
 let storageValue = [];
 
 function deleteRes(event){
+    //X버튼 클릭시에 HTML의 table행 삭제해주는 코드
     const btn = event.target;
     const tr = btn.parentNode;
     document.querySelector("tbody").removeChild(tr);
-    //여기까지가 X버튼 클릭시에 table행 삭제해주는 코드
+    //filter함수(원 배열의 id와 새로 만들어진 배열의 id값을 비교->삭제된 행의 아이디없는 배열 반환)
     const updateLS = storageValue.filter(function(resId){
-        return resId.id !== parseInt(tr.id);
+        return resId.id !== parseInt(tr.id); //ㅅㄱ
     });
     storageValue = updateLS;
     saveToLS();
@@ -37,6 +38,7 @@ function printTable(LSvalue){
     tr.appendChild(td3);
     tr.appendChild(delBtn);
 
+    tr.id = newId; //생성되는 행에 id순서 추가 -> 삭제시 id로 LS에 저장하기 위해.
     td1.innerText=LSvalue.resName;
     td2.innerText=LSvalue.resLoca;
     td3.innerText=LSvalue.resMenu;
