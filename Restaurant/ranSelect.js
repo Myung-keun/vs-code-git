@@ -16,6 +16,8 @@ document.querySelector("#clicks").addEventListener("click", function () {
     }
     let count = temp.length;
     let random = Math.floor(Math.random() * count);
-    console.log("랜덤 뽑기");
-    alert("오늘의 점심메뉴: " + temp[random].querySelectorAll("td")[2].innerText +"\n식당이름: "+ temp[random].querySelectorAll[0].innerText + " \n위치: " + temp[random].querySelectorAll("td")[1].innerText);
+    
+    alert("***랜덤선택 결과입니다***\n점심메뉴: " + temp[random].querySelectorAll("td")[2].innerText 
+    +"\n 식당 이름: " + temp[random].querySelector("td").innerText 
+    +"\n 식당 위치: " + temp[random].querySelectorAll("td")[1].innerText);
 });
