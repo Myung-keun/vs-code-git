@@ -50,11 +50,6 @@ function registInitEventListener()
     document.querySelector("#delButton").addEventListener("click", function() {
         removeRestaurant();
     });
-
-    // delete 버튼으로 리스트에서 삭제
-    document.onkeydown = function(key) {
-        if(key.keyCode == 46) removeRestaurant();
-    }
 }
 
 // 기타 기능 정의
@@ -271,8 +266,6 @@ function makeInsertTR()
     tr.appendChild(makeInsertTD("text"));
     tr.appendChild(makeInsertTD("text"));
     tr.appendChild(makeInsertTD("button"));
-
-    tr = addTRClickEvent(tr);
 
     return tr;
 }
