@@ -3,19 +3,19 @@
 
 
 //임시로 LS에 세 가지 value값들 저장해봄.
- const name = null;
- const loca = null;
- const menu = null;
+const name = null;
+const loca = null;
+const menu = null;
 
 let storageValue = [];
 
-function deleteRes(event){
+function deleteRes(event) {
     //X버튼 클릭시에 HTML의 table행 삭제해주는 코드
     const btn = event.target;
     const tr = btn.parentNode;
     document.querySelector("tbody").removeChild(tr);
     //filter함수(원 배열의 id와 새로 만들어진 배열의 id값을 비교->삭제된 행의 아이디없는 배열 반환)
-    const updateLS = storageValue.filter(function(resId){
+    const updateLS = storageValue.filter(function (resId) {
         return resId.id !== parseInt(tr.id); //tr.id는 string형식, 비교를위해 정수형으로 변환
     });
     //filter()를 거쳐 새롭게 만들어진 배열을 원래 배열에 저장 후 LocalStorage를 덮어서 저장
@@ -23,7 +23,7 @@ function deleteRes(event){
     saveToLS();
 }
 
-function printTable(LSvalue){
+function printTable(LSvalue) {
     //loadLS에서 JSON.parse()로 LS의 내용을 전달받았을때, tbody에 tr&td*3 한 세트 생성 및 출력
     const tbody = document.querySelector("tbody");
     const tr = document.createElement("tr");
@@ -31,7 +31,7 @@ function printTable(LSvalue){
     const td2 = document.createElement("td");
     const td3 = document.createElement("td");
     const delBtn = document.createElement("button"); //메뉴 옆에 삭제버튼 생성예정
-    const newId = storageValue.length+1; //retaurant 정보에 고유 id부여
+    const newId = storageValue.length + 1; //retaurant 정보에 고유 id부여
 
     tbody.appendChild(tr);
     tr.appendChild(td1);
@@ -40,34 +40,34 @@ function printTable(LSvalue){
     tr.appendChild(delBtn);
 
     tr.id = newId; //생성되는 행에 id순서 추가 -> 삭제시 id로 LS에 저장하기 위해.
-    td1.innerText=LSvalue.resName;
-    td2.innerText=LSvalue.resLoca;
-    td3.innerText=LSvalue.resMenu;
-    delBtn.innerText="X";
+    td1.innerText = LSvalue.resName;
+    td2.innerText = LSvalue.resLoca;
+    td3.innerText = LSvalue.resMenu;
+    delBtn.innerText = "X";
     delBtn.addEventListener("click", deleteRes);
-    
+
     const tempObj = {
         resName: name,
         resLoca: loca,
         resMenu: menu,
         id: newId
     };
-    tempObj.resName=LSvalue.resName;
-    tempObj.resLoca=LSvalue.resLoca;
-    tempObj.resMenu=LSvalue.resMenu;
+    tempObj.resName = LSvalue.resName;
+    tempObj.resLoca = LSvalue.resLoca;
+    tempObj.resMenu = LSvalue.resMenu;
     storageValue.push(tempObj);
     saveToLS();
 }
 
-function saveToLS(){
+function saveToLS() {
     //resInfo라는 LS_key에 storageValue배열을 저장해줌.
     localStorage.setItem('resInfo', JSON.stringify(storageValue));
 }
 
-function loadLS(){
+function loadLS() {
     //LS에 저장된 resInfo라는 키값을 가진 내용을 loadedInfo에 담아둠.
-    const loadedInfo = localStorage.getItem('resInfo'); 
-    JSON.parse(loadedInfo).forEach(function(items){
+    const loadedInfo = localStorage.getItem('resInfo');
+    JSON.parse(loadedInfo).forEach(function (items) {
         console.log(items);
         //loadedInfo가 잘 출력되는지 확인.
         printTable(items);
@@ -80,49 +80,68 @@ const addedTable = document.querySelector(".addedTable");
 addBtn.addEventListener("click", makeAddTable);
 
 //+버튼 클릭시 실행될 함수: 새로운 테이블(추가할 텍스트 입력 창) 및 추가button 생성
-function makeAddTable(){
-    const table = document.createElement("table");
-    const tr = document.createElement("tr");
-    const td1 = document.createElement("td");
-    const td2 = document.createElement("td");
-    const td3 = document.createElement("td");
-    const td4 = document.createElement("td");
-    const input1 = document.createElement("input");
-    const input2 = document.createElement("input");
-    const input3 = document.createElement("input");
-    const submitBtn = document.createElement("button");
-    submitBtn.innerText = '추가';
+function makeAddTable() {
+    if (addedTable.childElementCount < 1) {
 
-    addedTable.appendChild(table);
-    table.appendChild(tr);
-    tr.appendChild(td1);
-    td1.appendChild(input1);
-    tr.appendChild(td2);
-    td2.appendChild(input2);
-    tr.appendChild(td3);
-    td3.appendChild(input3);
-    tr.appendChild(td4);
-    td4.appendChild(submitBtn);
+        const table = document.createElement("table");
+        const tr = document.createElement("tr");
+        const td1 = document.createElement("td");
+        const td2 = document.createElement("td");
+        const td3 = document.createElement("td");
+        const td4 = document.createElement("td");
+        const input1 = document.createElement("input");
+        const input2 = document.createElement("input");
+        const input3 = document.createElement("input");
+        const submitBtn = document.createElement("button");
+        submitBtn.innerText = '+';
+        submitBtn.id = 'addBtn';
 
-    // 추가button 클릭할 시 각각의 text창의 내용(이름, 주소, 메뉴)를 임시객체 tempObj에
-    // 저장시킨 후 printTable에 임시객체를 전달. printTable은 전달받은 객체를 바탕으로
-    // printTable을 만든 뒤 storageValue[]에 전달받은 객체내용을 저장 -> sValue[]에
-    // 존재하는 내용들은 saveLS()함수를 통해 localStorage에 저장된다. 이후 새로고침을
-    // 하더라도 loadLS() -> printTable() -> saveLS() 를 통해 추가button을 눌러도 sValue[]
-    // 에 0번 인덱스부터 다시 처음부터 저장하는 것이 아니라 추가로 쌓아가면서 저장 가능
-    addedTable.querySelector("button").addEventListener("click",function(event){
-        event.preventDefault();        
-        const tempObj = {
-            resName: name,
-            resLoca: loca,
-            resMenu: menu
-        };
-        tempObj.resName = input1.value;
-        tempObj.resLoca = input2.value;
-        tempObj.resMenu = input3.value;
-        const arg = tempObj;
-        printTable(arg);
-    })  
+        addedTable.appendChild(table);
+        table.appendChild(tr);
+        tr.appendChild(td1);
+        td1.appendChild(input1);
+        input1.placeholder = "식당이름 입력";
+        tr.appendChild(td2);
+        td2.appendChild(input2);
+        input2.placeholder = "식당위치 입력";
+        tr.appendChild(td3);
+        td3.appendChild(input3);
+        input3.placeholder = "메뉴 입력";
+        tr.appendChild(td4);
+        td4.appendChild(submitBtn);
+
+        // 추가button 클릭할 시 각각의 text창의 내용(이름, 주소, 메뉴)를 임시객체 tempObj에
+        // 저장시킨 후 printTable에 임시객체를 전달. printTable은 전달받은 객체를 바탕으로
+        // printTable을 만든 뒤 storageValue[]에 전달받은 객체내용을 저장 -> sValue[]에
+        // 존재하는 내용들은 saveLS()함수를 통해 localStorage에 저장된다. 이후 새로고침을
+        // 하더라도 loadLS() -> printTable() -> saveLS() 를 통해 추가button을 눌러도 sValue[]
+        // 에 0번 인덱스부터 다시 처음부터 저장하는 것이 아니라 추가로 쌓아가면서 저장 가능
+        addedTable.querySelector("button").addEventListener("click", function (event) {
+            if (input1.value == '' || input2.value == '' || input3.value == '') {
+                alert("빈 칸을 모두 채워주셔야 합니다!!!");
+            } else {
+                event.preventDefault();
+                const tempObj = {
+                    resName: name,
+                    resLoca: loca,
+                    resMenu: menu
+                };
+                tempObj.resName = input1.value;
+                tempObj.resLoca = input2.value;
+                tempObj.resMenu = input3.value;
+                const arg = tempObj;
+                printTable(arg);
+
+                const btn = event.target;
+                const td = btn.parentNode;
+                const tr = td.parentNode;
+                const table = tr.parentNode;
+                document.querySelector(".addedTable").removeChild(table);
+            }
+        });
+    } else {
+        alert("잘못 눌렀습니다!");
+    }
 }
 
 loadLS();
