@@ -15,12 +15,7 @@
  
  2)tr을 클릭하여 선택 또는 해제 && 선택된 tr에서 랜덤으로 식당의 정보를 alert창으로 사용자에게 보여줌.
 
-<<<<<<< HEAD
  3) -추가<button>
-=======
- 3)
--추가<button>
->>>>>>> a1a9d01a9e737265e743b4b1d9e9804fbc43a7ff
  :클릭시 별도의 테이블에 3가지 tr에 각각 input창 + submit<button> 생성.
   -> input에 각각 이름, 위치, 메뉴를 입력 후 submit 클릭시 setItem으로 LocalStorage로 전달.
   && 별도의 추가테이블은 다시 삭제됨.
