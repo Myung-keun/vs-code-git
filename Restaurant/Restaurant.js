@@ -26,7 +26,7 @@ function deleteRes(event) {
 function printTable(LSvalue) {
     //loadLS에서 JSON.parse()로 LS의 내용을 전달받았을때, tbody에 tr&td*3 한 세트 생성 및 출력
     const tbody = document.querySelector("tbody");
-    const tr = document.createElement("tr");
+    let tr = document.createElement("tr");
     const td1 = document.createElement("td");
     const td2 = document.createElement("td");
     const td3 = document.createElement("td");
@@ -57,6 +57,16 @@ function printTable(LSvalue) {
     tempObj.resMenu = LSvalue.resMenu;
     storageValue.push(tempObj);
     saveToLS();
+
+    tr = clickTr(tr);
+    //+버튼으로 생성과 동시에 생성되는 element에 click이벤트가 활성화될 수 있도록 지정해줌.
+}
+
+function clickTr(tr){
+    tr.addEventListener("click", function(){
+        tr.className = tr.className == "" ? "selected" : "";
+    });
+    return tr;
 }
 
 function saveToLS() {
@@ -66,22 +76,29 @@ function saveToLS() {
 
 function loadLS() {
     //LS에 저장된 resInfo라는 키값을 가진 내용을 loadedInfo에 담아둠.
+    
     const loadedInfo = localStorage.getItem('resInfo');
     JSON.parse(loadedInfo).forEach(function (items) {
-        console.log(items);
-        //loadedInfo가 잘 출력되는지 확인.
         printTable(items);
         //loadedInfo의 값들을 바탕으로 td안에 내용 생성
-    });
+    });    
 }
 
-const addBtn = document.querySelector("#plus");
+const selAddBtn = document.querySelector(".bt");
+const addBtn = document.querySelector(".plus");
 const addedTable = document.querySelector(".addedTable");
 addBtn.addEventListener("click", makeAddTable);
+let toggleCount = 0;
 
 //+버튼 클릭시 실행될 함수: 새로운 테이블(추가할 텍스트 입력 창) 및 추가button 생성
 function makeAddTable() {
-    if (addedTable.childElementCount < 1) {
+    //+버튼 클릭시 토글로 + -> X 로 변화 & 색상도 변화
+    toggleCount++;
+    let toggleFormula = toggleCount % 2;
+    
+    if (toggleFormula == 1) {
+        addBtn.innerText='x';
+        addBtn.className='changePlus';
 
         const table = document.createElement("table");
         const tr = document.createElement("tr");
@@ -94,7 +111,7 @@ function makeAddTable() {
         const input3 = document.createElement("input");
         const submitBtn = document.createElement("button");
         submitBtn.innerText = '+';
-        submitBtn.id = 'addBtn';
+        submitBtn.id = 'addingBtn';
 
         addedTable.appendChild(table);
         table.appendChild(tr);
@@ -121,6 +138,11 @@ function makeAddTable() {
                 alert("빈 칸을 모두 채워주셔야 합니다!!!");
             } else {
                 event.preventDefault();
+
+                toggleCount++;
+                selAddBtn.querySelector("button").className='plus';
+                selAddBtn.querySelector("button").innerText='+';
+                
                 const tempObj = {
                     resName: name,
                     resLoca: loca,
@@ -140,8 +162,27 @@ function makeAddTable() {
             }
         });
     } else {
-        alert("잘못 눌렀습니다!");
+        addBtn.innerText='+';
+        addBtn.className='plus';
+        addedTable.innerHTML=''; 
     }
+}
+
+/*선택된 tr에서 랜덤으로 식당의 정보를 alert로 보여주는 함수*/ 
+const RanSelectRes = document.querySelector("#clicks");
+RanSelectRes.addEventListener("click", ranSelect);
+
+function ranSelect(){
+    let temp;
+    if (document.querySelectorAll("tr.selected").length > 0) {
+        temp = document.querySelectorAll("tr.selected");
+    }
+    else {
+        temp = document.querySelectorAll("tbody tr");
+    }
+    let count = temp.length;
+    let random = Math.floor(Math.random() * count);
+    alert("오늘의 점심메뉴: " + temp[random].querySelectorAll("td")[2].innerText +"\n식당이름: "+ temp[random].querySelector("td").innerText + " \n위치: " + temp[random].querySelectorAll("td")[1].innerText);
 }
 
 loadLS();
