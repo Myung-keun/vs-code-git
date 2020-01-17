@@ -43,6 +43,7 @@ tbody tr.selected {
     padding:20px;
     font-weight:bold;
 }
+
 tbody tr:hover{
     background-color:#ffe;
     font-weight: bold;
@@ -79,22 +80,35 @@ button{
     width:4.1%;   
 }
 
-#plus{
+.plus{
     background:#fff;
     font-size:25px;
     border:1px solid orange;
     color:orange;
 }
 
-#plus:hover{
+.plus:hover{
     background:orange;
-    font-size:20px;
+    font-size:25px;
     color:#fff;
     transition:all .5s ease;
     box-shadow:0px 10px 20px rgb(255, 198, 91);
 }
+.changePlus{
+    background:#f00;
+    font-size:25px;
+    border:1px solid orange;
+    color:#fff;
+}
+.changePlus:hover{
+    background:#ff8080;
+    font-size:25px;
+    color:#fff;
+    transition:all .5s ease;
+}
 
-#addBtn{
+
+#addingBtn{
     width:20pt;
     height:20pt;
     color:rgb(160, 160, 160);
@@ -102,7 +116,7 @@ button{
     border:1px solid rgb(160, 160, 160);
 }
 
-#addBtn:hover{
+#addingBtn:hover{
     background:rgb(160, 160, 160);
     transition:all .35s ease;
     transform:translateY(10px,5px);

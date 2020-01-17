@@ -62,7 +62,7 @@ function initFunction()
 
         const index = this.indexOf(restaurant);
         if (index > -1) {
-        this.splice(index, 1);
+            this.splice(index, 1);
         }
     }
 }
