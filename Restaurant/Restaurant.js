@@ -136,6 +136,10 @@ function loadLS() {
 
         initValue = makeResObj("모쿠", "봉은사로44길 70","5분", "일식");
         printTable(initValue);
+
+        initValue = makeResObj("맘스터치", "선릉로93길 32","10분", "양식");
+        printTable(initValue);
+        
     }
 }
 
