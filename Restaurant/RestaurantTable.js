@@ -1,3 +1,5 @@
+
+
 let storageValue = [];
 
 function printTable(resObj) {
@@ -21,7 +23,7 @@ function printTable(resObj) {
     tr.id = newId; //생성되는 행에 id순서 추가 -> 삭제시 id로 LS에 저장하기 위해.
     td1.innerText = resObj.resName;
     td2.innerText = resObj.resLoca;
-    td3.innerText = resObj.resDis;
+    td3.innerText = resObj.resDis + "분";
     td4.innerText = resObj.resMenu;
     
     delBtn.innerText = "X";
