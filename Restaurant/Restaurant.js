@@ -163,7 +163,7 @@ function makeAddTable() {
         // 하더라도 loadLS() -> printTable() -> saveLS() 를 통해 추가button을 눌러도 sValue[]
         // 에 0번 인덱스부터 다시 처음부터 저장하는 것이 아니라 추가로 쌓아가면서 저장 가능
         addedTable.querySelector("button").addEventListener("click", function (event) {
-            if (input1.value == '' || input2.value == '' || input3.value == '') {
+            if (input1.value.trim() == '' || input2.value.trim() == '' || input3.value.trim() == '') {
                 alert("빈 칸을 모두 채워주셔야 합니다!!!");
             } else {
                 event.preventDefault();
