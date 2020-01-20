@@ -122,10 +122,10 @@ function makeAddTable() {
     //+버튼 클릭시 토글로 + -> X 로 변화 & 색상도 변화
     toggleCount++;
     let toggleFormula = toggleCount % 2;
-    
+
     if (toggleFormula == 1) {
-        addBtn.innerText='x';
-        addBtn.className='changePlus';
+        addBtn.innerText = 'x';
+        addBtn.className = 'changePlus';
 
         const table = document.createElement("table");
         const tr = document.createElement("tr");
@@ -159,23 +159,17 @@ function makeAddTable() {
         tr.appendChild(td4);
         td4.appendChild(submitBtn);
 
-        // 추가button 클릭할 시 각각의 text창의 내용(이름, 주소, 메뉴)를 임시객체 tempObj에
-        // 저장시킨 후 printTable에 임시객체를 전달. printTable은 전달받은 객체를 바탕으로
-        // printTable을 만든 뒤 storageValue[]에 전달받은 객체내용을 저장 -> sValue[]에
-        // 존재하는 내용들은 saveLS()함수를 통해 localStorage에 저장된다. 이후 새로고침을
-        // 하더라도 loadLS() -> printTable() -> saveLS() 를 통해 추가button을 눌러도 sValue[]
-        // 에 0번 인덱스부터 다시 처음부터 저장하는 것이 아니라 추가로 쌓아가면서 저장 가능
-        addedTable.querySelector("button").addEventListener("click", function (event) {
-            if (input1.value.trim() == '' || input2.value.trim() == '' || input3.value.trim() == '' ||input4.value.trim() == '') {
+        function addingTableValues(event) {
+            if (input1.value.trim() == '' || input2.value.trim() == '' || input3.value.trim() == '' || input4.value.trim() == '') {
                 alert("빈 칸을 모두 채워주셔야 합니다!!!");
             } else {
                 event.preventDefault();
 
                 toggleCount++;
-                selAddBtn.querySelector("button").className='plus';
-                selAddBtn.querySelector("button").innerText='+';
-                      
-                const arg = makeResObj(input1.value, input2.value, input4.value ,input3.value);
+                selAddBtn.querySelector("button").className = 'plus';
+                selAddBtn.querySelector("button").innerText = '+';
+
+                const arg = makeResObj(input1.value, input2.value, input4.value, input3.value);
                 printTable(arg);
 
                 const btn = event.target;
@@ -184,13 +178,23 @@ function makeAddTable() {
                 const table = tr.parentNode;
                 document.querySelector(".addedTable").removeChild(table);
             }
-        });
+        }
+
+        // 추가button 클릭할 시 각각의 text창의 내용(이름, 주소, 메뉴)를 임시객체 tempObj에
+        // 저장시킨 후 printTable에 임시객체를 전달. printTable은 전달받은 객체를 바탕으로
+        // printTable을 만든 뒤 storageValue[]에 전달받은 객체내용을 저장 -> sValue[]에
+        // 존재하는 내용들은 saveLS()함수를 통해 localStorage에 저장된다. 이후 새로고침을
+        // 하더라도 loadLS() -> printTable() -> saveLS() 를 통해 추가button을 눌러도 sValue[]
+        // 에 0번 인덱스부터 다시 처음부터 저장하는 것이 아니라 추가로 쌓아가면서 저장 가능
+        addedTable.querySelector("button").addEventListener("click", addingTableValues);
     } else {
-        addBtn.innerText='+';
-        addBtn.className='plus';
-        addedTable.innerHTML=''; 
+        addBtn.innerText = '+';
+        addBtn.className = 'plus';
+        addedTable.innerHTML = '';
     }
 }
+
+
 
 /*선택된 tr에서 랜덤으로 식당의 정보를 alert로 보여주는 함수*/ 
 const RanSelectRes = document.querySelector("#clicks");
