@@ -1,3 +1,11 @@
+let li = document.querySelectorAll("li");
+
+ li.forEach(function(li){
+     li.addEventListener("click", function(){
+         li.className = li.className == "" ? "menuSelected" : "";
+     });
+ });
+
 function clickTr(tr){
     tr.addEventListener("click", function(){
         tr.className = tr.className == "" ? "selected" : "";
@@ -21,3 +29,4 @@ function ranSelect(){
     let random = Math.floor(Math.random() * count);
     alert("\n식당이름: "+ temp[random].querySelector("td").innerText + " \n위치: " + temp[random].querySelectorAll("td")[1].innerText +"\n회사에서 "+ temp[random].querySelectorAll("td")[2].innerText + "거리");
 }
+
