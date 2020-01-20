@@ -29,6 +29,7 @@ li{
 li:hover{
     background-color:orange;
     font-weight: bold;
+    color:#fff;
 }
 
 li.menuSelected{
