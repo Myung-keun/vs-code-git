@@ -3,12 +3,8 @@
 
 
 //임시로 LS에 세 가지 value값들 저장해봄.
-const name = null;
-const loca = null;
-const menu = null;
 
 let storageValue = [];
-
 
 function deleteRes(event) {
     //X버튼 클릭시에 HTML의 table행 삭제해주는 코드
@@ -24,7 +20,7 @@ function deleteRes(event) {
     saveToLS();
 }
 
-function printTable(LSvalue) {
+function printTable(resObj) {
     //loadLS에서 JSON.parse()로 LS의 내용을 전달받았을때, tbody에 tr&td*3 한 세트 생성 및 출력
     const tbody = document.querySelector("tbody");
     let tr = document.createElement("tr");
@@ -41,21 +37,13 @@ function printTable(LSvalue) {
     tr.appendChild(delBtn);
 
     tr.id = newId; //생성되는 행에 id순서 추가 -> 삭제시 id로 LS에 저장하기 위해.
-    td1.innerText = LSvalue.resName;
-    td2.innerText = LSvalue.resLoca;
-    td3.innerText = LSvalue.resMenu;
+    td1.innerText = resObj.resName;
+    td2.innerText = resObj.resLoca;
+    td3.innerText = resObj.resMenu;
     delBtn.innerText = "X";
     delBtn.addEventListener("click", deleteRes);
 
-    const tempObj = {
-        resName: name,
-        resLoca: loca,
-        resMenu: menu,
-        id: newId
-    };
-    tempObj.resName = LSvalue.resName;
-    tempObj.resLoca = LSvalue.resLoca;
-    tempObj.resMenu = LSvalue.resMenu;
+    let tempObj = makeResObj(resObj.resName, resObj.resLoca, resObj.resMenu)
     storageValue.push(tempObj);
     saveToLS();
 
@@ -85,26 +73,27 @@ function loadLS() {
         });
     //LS에 저장된 값이 없을 경우, LS에 초기화 시켜줄 내용(기본 6개 식당)
     } else{
-        let initValue = initRes("오카에리","봉은사로 44길 68","일식류");
+        let initValue = makeResObj("오카에리","봉은사로 44길 68","일식류");
         printTable(initValue);
 
-        initValue = initRes("청운각","언주로 98길 21", "중식류");
+        initValue = makeResObj("청운각","언주로 98길 21", "중식류");
         printTable(initValue);
 
-        initValue = initRes("매반생면","언주로 508 지하1층", "면류");
+        initValue = makeResObj("매반생면","언주로 508 지하1층", "면류");
         printTable(initValue);
 
-        initValue = initRes("아랑졸 돈까스","언주로 98길 22", "돈까스류");
+        initValue = makeResObj("아랑졸 돈까스","언주로 98길 22", "돈까스류");
         printTable(initValue);
 
-        initValue = initRes("일미리 금계찜닭", "선릉로 93길 22", "찜닭");
+        initValue = makeResObj("일미리 금계찜닭", "선릉로 93길 22", "찜닭");
         printTable(initValue);
 
-        initValue = initRes("어메이징 타이", "언주로 98길 25", "태국음식");
+        initValue = makeResObj("어메이징 타이", "언주로 98길 25", "태국음식");
         printTable(initValue);
     }
 }
-function initRes(name, loca, menu){
+
+function makeResObj(name, loca, menu){
     return {
         resName: name,
         resLoca: loca,
