@@ -160,16 +160,8 @@ function makeAddTable() {
                 toggleCount++;
                 selAddBtn.querySelector("button").className='plus';
                 selAddBtn.querySelector("button").innerText='+';
-                
-                const tempObj = {
-                    resName: name,
-                    resLoca: loca,
-                    resMenu: menu
-                };
-                tempObj.resName = input1.value;
-                tempObj.resLoca = input2.value;
-                tempObj.resMenu = input3.value;
-                const arg = tempObj;
+                      
+                const arg = makeResObj(input1.value, input2.value, input3.value);
                 printTable(arg);
 
                 const btn = event.target;
