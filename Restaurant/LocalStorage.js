@@ -15,6 +15,7 @@ function loadLS() {
         });
     //LS에 저장된 값이 없을 경우, LS에 초기화 시켜줄 내용(기본 6개 식당)
     } else{
+
         let initValue = makeResObj("오카에리","봉은사로 44길 68",1,"일식");
         printTable(initValue);
 
@@ -74,5 +75,6 @@ function loadLS() {
         
     }
 }
+
 
 loadLS();
