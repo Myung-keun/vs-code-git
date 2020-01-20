@@ -30,6 +30,7 @@ function printTable(resObj) {
     
     let tempObj = makeResObj(resObj.resName, resObj.resLoca, resObj.resDis, resObj.resMenu)
     storageValue.push(tempObj);
+    //거리순 내림차순 정렬 함수
     storageValue.sort(function(a,b){
         return a["resDis"] - b["resDis"];
     })
