@@ -1,10 +1,9 @@
-let li = document.querySelectorAll("li");
+const Korean = document.querySelector("#Korean");
+Korean.addEventListener("click", sortByKorean);
 
- li.forEach(function(li){
-     li.addEventListener("click", function(){
-         li.className = li.className == "" ? "menuSelected" : "";
-     });
- });
+function sortByKorean(){
+    Korean.className = Korean.className == "" ? "menuSelected" : "";
+}
 
 function clickTr(tr){
     tr.addEventListener("click", function(){
