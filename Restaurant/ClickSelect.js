@@ -19,5 +19,5 @@ function ranSelect(){
     }
     let count = temp.length;
     let random = Math.floor(Math.random() * count);
-    alert("오늘의 점심메뉴: " + temp[random].querySelectorAll("td")[2].innerText +"\n식당이름: "+ temp[random].querySelector("td").innerText + " \n위치: " + temp[random].querySelectorAll("td")[1].innerText);
+    alert("\n식당이름: "+ temp[random].querySelector("td").innerText + " \n위치: " + temp[random].querySelectorAll("td")[1].innerText);
 }
