@@ -24,22 +24,16 @@ function loadLS() {
         initValue = makeResObj("매반생면","언주로 508 지하1층","5분","한식");
         printTable(initValue);
 
-        initValue = makeResObj("아랑졸 돈까스","언주로 98길 22","5분", "양식");
-        printTable(initValue);
-
         initValue = makeResObj("일미리 금계찜닭", "선릉로 93길 22","10분", "한식");
         printTable(initValue);
 
-        initValue = makeResObj("어메이징 타이", "언주로 98길 25","5분", "아시안");
+        initValue = makeResObj("어메이징 타이", "언주로 98길 25","5분", "양식");
         printTable(initValue);
 
-        initValue = makeResObj("포하임", "선릉로86길 15","5분", "아시안");
+        initValue = makeResObj("포하임", "선릉로86길 15","5분", "양식");
         printTable(initValue);
 
         initValue = makeResObj("해변에서", "언주로98길 5-3","1분", "한식");
-        printTable(initValue);
-
-        initValue = makeResObj("고돼지", "언주로98길 14","1분", "한식");
         printTable(initValue);
 
         initValue = makeResObj("동해식당", "역삼동 700-22","5분", "한식");
@@ -60,9 +54,6 @@ function loadLS() {
         initValue = makeResObj("김가면옥", "언주로98길 9","1분", "한식");
         printTable(initValue);
 
-        initValue = makeResObj("소소가츠", "언주로98길 21","5분", "양식");
-        printTable(initValue);
-
         initValue = makeResObj("샐러디", "선릉로93길 26","5분", "양식");
         printTable(initValue);
 
@@ -76,6 +67,9 @@ function loadLS() {
         printTable(initValue);
 
         initValue = makeResObj("맘스터치", "선릉로93길 32","10분", "양식");
+        printTable(initValue);
+
+        initValue = makeResObj("마피아분식", "선정릉역 근처","10분", "양식");
         printTable(initValue);
         
     }
