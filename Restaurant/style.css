@@ -5,6 +5,38 @@
     padding-top:20px;
 }
 
+.wrap{
+    margin:0 auto;
+    max-width:550px;
+ 
+}
+
+ul{
+    list-style:none;
+}
+
+li{
+    display:table-cell;
+    height:40px;
+    width:300px;
+    border:1px solid orange;
+    font-size:14px;
+    line-height:40px;
+    text-align:center;
+    margin-left:-1px;
+}
+
+li.selected{
+    background:orange;
+    color:#fff;
+    font-style:bold;
+}
+
+.menu{
+    display:table;
+    padding:0;
+}
+
 table {
     margin:0 auto; 
     text-align:center;
