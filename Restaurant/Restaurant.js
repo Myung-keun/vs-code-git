@@ -94,7 +94,7 @@ function loadLS() {
         initValue = makeResObj("일미리 금계찜닭", "선릉로 93길 22","10분", "한식");
         printTable(initValue);
 
-        initValue = makeResObj("어메이징 타이", "언주로 98길 25","5분", "양식");
+        initValue = makeResObj("어메이징 타이", "언주로 98길 25","5분", "아시안");
         printTable(initValue);
 
         initValue = makeResObj("포하임", "선릉로86길 15","5분", "아시안");
