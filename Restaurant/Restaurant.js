@@ -11,12 +11,14 @@ function deleteRes(event) {
     const btn = event.target;
     const tr = btn.parentNode;
     document.querySelector("tbody").removeChild(tr);
+    console.log(tr.id);
     //filter함수(원 배열의 id와 새로 만들어진 배열의 id값을 비교->삭제된 행의 아이디없는 배열 반환)
     const updateLS = storageValue.filter(function (resId) {
         return resId.id !== parseInt(tr.id); //tr.id는 string형식, 비교를위해 정수형으로 변환
     });
     //filter()를 거쳐 새롭게 만들어진 배열을 원래 배열에 저장 후 LocalStorage를 덮어서 저장
     storageValue = updateLS;
+    console.log(updateLS); 
     saveToLS();
 }
 
@@ -27,6 +29,7 @@ function printTable(resObj) {
     const td1 = document.createElement("td");
     const td2 = document.createElement("td");
     const td3 = document.createElement("td");
+    const td4 = document.createElement("td");
     const delBtn = document.createElement("button"); //메뉴 옆에 삭제버튼 생성예정
     const newId = storageValue.length + 1; //retaurant 정보에 고유 id부여
 
@@ -34,19 +37,22 @@ function printTable(resObj) {
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
+    tr.appendChild(td4);
     tr.appendChild(delBtn);
 
     tr.id = newId; //생성되는 행에 id순서 추가 -> 삭제시 id로 LS에 저장하기 위해.
     td1.innerText = resObj.resName;
     td2.innerText = resObj.resLoca;
-    td3.innerText = resObj.resMenu;
+    td3.innerText = resObj.resDis;
+    td4.innerText = resObj.resMenu;
+    
     delBtn.innerText = "X";
-    delBtn.addEventListener("click", deleteRes);
-
-    let tempObj = makeResObj(resObj.resName, resObj.resLoca, resObj.resMenu)
+    
+    let tempObj = makeResObj(resObj.resName, resObj.resLoca, resObj.resDis,resObj.resMenu)
     storageValue.push(tempObj);
     saveToLS();
 
+    delBtn.addEventListener("click", deleteRes);
     tr = clickTr(tr);
     //+버튼으로 생성과 동시에 생성되는 element에 click이벤트가 활성화될 수 있도록 지정해줌.
 }
@@ -73,30 +79,31 @@ function loadLS() {
         });
     //LS에 저장된 값이 없을 경우, LS에 초기화 시켜줄 내용(기본 6개 식당)
     } else{
-        let initValue = makeResObj("오카에리","봉은사로 44길 68","일식류");
+        let initValue = makeResObj("오카에리","봉은사로 44길 68","1분","일식류");
         printTable(initValue);
 
-        initValue = makeResObj("청운각","언주로 98길 21", "중식류");
+        initValue = makeResObj("청운각","언주로 98길 21", "1분","중식류");
         printTable(initValue);
 
-        initValue = makeResObj("매반생면","언주로 508 지하1층", "면류");
+        initValue = makeResObj("매반생면","언주로 508 지하1층","1분","면류");
         printTable(initValue);
 
-        initValue = makeResObj("아랑졸 돈까스","언주로 98길 22", "돈까스류");
+        initValue = makeResObj("아랑졸 돈까스","언주로 98길 22","1분", "돈까스류");
         printTable(initValue);
 
-        initValue = makeResObj("일미리 금계찜닭", "선릉로 93길 22", "찜닭");
+        initValue = makeResObj("일미리 금계찜닭", "선릉로 93길 22","1분", "찜닭");
         printTable(initValue);
 
-        initValue = makeResObj("어메이징 타이", "언주로 98길 25", "태국음식");
+        initValue = makeResObj("어메이징 타이", "언주로 98길 25","1분", "태국음식");
         printTable(initValue);
     }
 }
 
-function makeResObj(name, loca, menu){
+function makeResObj(name, loca, distance ,menu){
     return {
         resName: name,
         resLoca: loca,
+        resDis: distance,
         resMenu: menu
     };
 }
@@ -124,9 +131,11 @@ function makeAddTable() {
         const td2 = document.createElement("td");
         const td3 = document.createElement("td");
         const td4 = document.createElement("td");
+        const td5 = document.createElement("td");
         const input1 = document.createElement("input");
         const input2 = document.createElement("input");
         const input3 = document.createElement("input");
+        const input4 = document.createElement("input");
         const submitBtn = document.createElement("button");
         submitBtn.innerText = '+';
         submitBtn.id = 'addingBtn';
@@ -139,6 +148,9 @@ function makeAddTable() {
         tr.appendChild(td2);
         td2.appendChild(input2);
         input2.placeholder = "식당위치 입력";
+        tr.appendChild(td5);
+        td5.appendChild(input4);
+        input4.placeholder = "거리 입력";
         tr.appendChild(td3);
         td3.appendChild(input3);
         input3.placeholder = "메뉴 입력";
@@ -152,7 +164,7 @@ function makeAddTable() {
         // 하더라도 loadLS() -> printTable() -> saveLS() 를 통해 추가button을 눌러도 sValue[]
         // 에 0번 인덱스부터 다시 처음부터 저장하는 것이 아니라 추가로 쌓아가면서 저장 가능
         addedTable.querySelector("button").addEventListener("click", function (event) {
-            if (input1.value.trim() == '' || input2.value.trim() == '' || input3.value.trim() == '') {
+            if (input1.value.trim() == '' || input2.value.trim() == '' || input3.value.trim() == '' ||input4.value.trim() == '') {
                 alert("빈 칸을 모두 채워주셔야 합니다!!!");
             } else {
                 event.preventDefault();
@@ -161,7 +173,7 @@ function makeAddTable() {
                 selAddBtn.querySelector("button").className='plus';
                 selAddBtn.querySelector("button").innerText='+';
                       
-                const arg = makeResObj(input1.value, input2.value, input3.value);
+                const arg = makeResObj(input1.value, input2.value, input4.value ,input3.value);
                 printTable(arg);
 
                 const btn = event.target;
