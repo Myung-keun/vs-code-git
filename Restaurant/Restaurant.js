@@ -9,6 +9,7 @@ const menu = null;
 
 let storageValue = [];
 
+
 function deleteRes(event) {
     //X버튼 클릭시에 HTML의 table행 삭제해주는 코드
     const btn = event.target;
@@ -76,13 +77,41 @@ function saveToLS() {
 
 function loadLS() {
     //LS에 저장된 resInfo라는 키값을 가진 내용을 loadedInfo에 담아둠.
-    
     const loadedInfo = localStorage.getItem('resInfo');
-    JSON.parse(loadedInfo).forEach(function (items) {
-        printTable(items);
-        //loadedInfo의 값들을 바탕으로 td안에 내용 생성
-    });    
+    //LS에 저장된 값이 있을 경우 LS내용을 바탕으로 table 생성
+    if (loadedInfo !== null) {
+        JSON.parse(loadedInfo).forEach(function (items) {
+            printTable(items);
+        });
+    //LS에 저장된 값이 없을 경우, LS에 초기화 시켜줄 내용(기본 6개 식당)
+    } else{
+        let initValue = initRes("오카에리","봉은사로 44길 68","일식류");
+        printTable(initValue);
+
+        initValue = initRes("청운각","언주로 98길 21", "중식류");
+        printTable(initValue);
+
+        initValue = initRes("매반생면","언주로 508 지하1층", "면류");
+        printTable(initValue);
+
+        initValue = initRes("아랑졸 돈까스","언주로 98길 22", "돈까스류");
+        printTable(initValue);
+
+        initValue = initRes("일미리 금계찜닭", "선릉로 93길 22", "찜닭");
+        printTable(initValue);
+
+        initValue = initRes("어메이징 타이", "언주로 98길 25", "태국음식");
+        printTable(initValue);
+    }
 }
+function initRes(name, loca, menu){
+    return {
+        resName: name,
+        resLoca: loca,
+        resMenu: menu
+    };
+}
+
 
 const selAddBtn = document.querySelector(".bt");
 const addBtn = document.querySelector(".plus");
