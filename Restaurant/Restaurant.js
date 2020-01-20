@@ -46,7 +46,7 @@ function printTable(resObj) {
     
     delBtn.innerText = "X";
     
-    let tempObj = makeResObj(resObj.resName, resObj.resLoca, resObj.resDis,resObj.resMenu)
+    let tempObj = makeResObj(resObj.resName, resObj.resLoca, resObj.resDis, resObj.resMenu)
     storageValue.push(tempObj);
     saveToLS();
 
