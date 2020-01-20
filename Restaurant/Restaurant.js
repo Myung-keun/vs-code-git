@@ -100,11 +100,13 @@ function loadLS() {
 }
 
 function makeResObj(name, loca, distance ,menu){
+    const newId = storageValue.length+1;
     return {
         resName: name,
         resLoca: loca,
         resDis: distance,
-        resMenu: menu
+        resMenu: menu,
+        id: newId
     };
 }
 
