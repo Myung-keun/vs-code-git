@@ -18,6 +18,7 @@ function printTable(resObj) {
     tr.appendChild(td2);
     tr.appendChild(td3);
     tr.appendChild(td4);
+    
     tr.appendChild(delBtn);
 
     tr.id = newId; //생성되는 행에 id순서 추가 -> 삭제시 id로 LS에 저장하기 위해.

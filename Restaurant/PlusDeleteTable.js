@@ -26,7 +26,11 @@ function makeAddTable() {
         const input1 = document.createElement("input");
         const input2 = document.createElement("input");
         const input3 = document.createElement("input");
-        const input4 = document.createElement("input");
+        const sel = document.createElement("select");
+        const opt1 = document.createElement("option");
+        const opt2 = document.createElement("option");
+        const opt3 = document.createElement("option");
+        const opt4 = document.createElement("option");
         const submitBtn = document.createElement("button");
         submitBtn.innerText = '+';
         submitBtn.id = 'addingBtn';
@@ -36,20 +40,30 @@ function makeAddTable() {
         tr.appendChild(td1);
         td1.appendChild(input1);
         input1.placeholder = "식당이름 입력";
+
         tr.appendChild(td2);
         td2.appendChild(input2);
         input2.placeholder = "식당위치 입력";
-        tr.appendChild(td5);
-        td5.appendChild(input4);
-        input4.placeholder = "거리 입력";
+
         tr.appendChild(td3);
         td3.appendChild(input3);
-        input3.placeholder = "메뉴 입력";
+        input3.placeholder = "거리 입력";
+
         tr.appendChild(td4);
-        td4.appendChild(submitBtn);
+        td4.appendChild(sel);
+        sel.appendChild(opt1);
+        opt1.innerText="한식";
+        sel.appendChild(opt2);
+        opt2.innerText="중식";
+        sel.appendChild(opt3);
+        opt3.innerText="일식";
+        sel.appendChild(opt4);
+        opt4.innerText="양식";
+        tr.appendChild(td5);
+        td5.appendChild(submitBtn);
 
         function addingTableValues(event) {
-            if (input1.value.trim() == '' || input2.value.trim() == '' || input3.value.trim() == '' || input4.value.trim() == '') {
+            if (input1.value.trim() == '' || input2.value.trim() == '' || input3.value.trim() == '') {
                 alert("빈 칸을 모두 채워주셔야 합니다!!!");
             } else {
                 event.preventDefault();
@@ -58,7 +72,7 @@ function makeAddTable() {
                 selAddBtn.querySelector("button").className = 'plus';
                 selAddBtn.querySelector("button").innerText = '+';
 
-                const arg = makeResObj(input1.value, input2.value, input4.value, input3.value);
+                const arg = makeResObj(input1.value, input2.value, input3.value, sel.value);
                 printTable(arg);
 
                 const btn = event.target;
