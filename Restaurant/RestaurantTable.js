@@ -112,11 +112,11 @@ function (startIndex){
 
 					
 
-	}
+	}             
 
-		$(".paging").html(pagingHTML);
+		$("#page").html(pagingHTML);
 
-		$(".paging a").click(function (e) {
+		$("table tbody").click(function (e) {
 
 			paging($(this).attr('id'));
 
