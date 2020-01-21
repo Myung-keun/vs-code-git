@@ -1,14 +1,27 @@
 const li = document.querySelectorAll("li");
 const table = document.querySelector(".mainTable");
 const tbody = table.querySelector("tbody");
+const selMenu = document.getElementsByClassName("menuSelected");
 
 li.forEach(function (li) {
     li.addEventListener("click", function () {
-        li.className = li.className == "" ? "menuSelected" : "";
+        if (li.className == "" && selMenu.length < 1) {
+            li.className = "menuSelected";
+        } else if (li.className == "menuSelected" && selMenu.length < 2) {
+            li.className = "";
+            cancelSort();
+        } else {
+            alert("중복값은 허용하지 않습니다 ㅜㅜ")
+        }
+
         if (li.className == "menuSelected" && li.id == "Korean") {
             sortKor();
-        } else if (li.className == "" && li.id == "Korean") {
-            cancelSort();
+        } else if (li.className == "menuSelected" && li.id == "Chinese") {
+            sortChi();
+        } else if (li.className == "menuSelected" && li.id == "Japanese") {
+            sortJap();
+        } else if (li.className == "menuSelected" && li.id == "Foreign") {
+            sortForeign();
         }
     })
 })
@@ -56,6 +69,45 @@ function sortKor() {
 
     for (let i = 0; i < storageValue.length; i++) {
         if (storageValue[i].resMenu == "한식") {
+            sortTable(makeResObj(storageValue[i].resName, storageValue[i].resLoca, storageValue[i].resDis, storageValue[i].resMenu))
+        }
+    }
+}
+
+function sortChi(){
+    tbody.innerHTML = '';
+    console.log("중식");
+    const loadedMenu = localStorage.getItem('resInfo');
+    const storageValue = JSON.parse(loadedMenu);
+
+    for (let i = 0; i < storageValue.length; i++) {
+        if (storageValue[i].resMenu == "중식") {
+            sortTable(makeResObj(storageValue[i].resName, storageValue[i].resLoca, storageValue[i].resDis, storageValue[i].resMenu))
+        }
+    }
+}
+
+function sortJap(){
+    tbody.innerHTML = '';
+    console.log("일식");
+    const loadedMenu = localStorage.getItem('resInfo');
+    const storageValue = JSON.parse(loadedMenu);
+
+    for (let i = 0; i < storageValue.length; i++) {
+        if (storageValue[i].resMenu == "일식") {
+            sortTable(makeResObj(storageValue[i].resName, storageValue[i].resLoca, storageValue[i].resDis, storageValue[i].resMenu))
+        }
+    }
+}
+
+function sortForeign(){
+    tbody.innerHTML = '';
+    console.log("양식");
+    const loadedMenu = localStorage.getItem('resInfo');
+    const storageValue = JSON.parse(loadedMenu);
+
+    for (let i = 0; i < storageValue.length; i++) {
+        if (storageValue[i].resMenu == "양식") {
             sortTable(makeResObj(storageValue[i].resName, storageValue[i].resLoca, storageValue[i].resDis, storageValue[i].resMenu))
         }
     }
