@@ -39,20 +39,11 @@ function printTable(resObj) {
 }
 
 function makeResObj(name, loca, distance ,menu){
-<<<<<<< HEAD
-=======
-    const newId = storageValue.length+1;
->>>>>>> 1c741b1dce2886730a5164c66a56c92453a73bad
     return {
         resName: name,
         resLoca: loca,
         resDis: distance,
-<<<<<<< HEAD
         resMenu: menu
-=======
-        resMenu: menu,
-        id: newId
->>>>>>> 1c741b1dce2886730a5164c66a56c92453a73bad
     };
 }
 
