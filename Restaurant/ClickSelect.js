@@ -14,8 +14,9 @@ li.forEach(function (li) {
                     sortTable(makeResObj(storageValue[i].resName, storageValue[i].resLoca, storageValue[i].resDis, storageValue[i].resMenu))
                 }
             }
-        } else {
-            for (let i = 0; i < storageValue.length; i++) {
+        } else if(li.className == "" && li.id == "Korean"){
+            tbody.innerHTML='';
+            for (let i = 0; i < storageValue.length; i++) {               
                 sortTable(makeResObj(storageValue[i].resName, storageValue[i].resLoca, storageValue[i].resDis, storageValue[i].resMenu))
             }
         }
