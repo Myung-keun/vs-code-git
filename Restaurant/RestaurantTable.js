@@ -126,107 +126,162 @@ function makeResObj(name, loca, distance ,menu){
 
 
 //페이징 하는 함수 2
-QueryString = function(str) {
-    var str = str ? str : document.location.href;
-    this.argv = new Array();
-    this.queryString = str.split('?')[1];
-    if (!this.queryString) this.queryString = '';
-    var _argv = this.queryString.split('&');
-    for(var i=0; i<_argv.length; i++) {
-        $=_argv[i].split('=');
-        var _key = $[0];
-        var _val = $[1];
-        this.argv[_key] = $[1];
-    }
-  
-    if (!this.argv) this.argv = new Array();
-  
-    this.setVar = function(key,val) {
-        if (typeof key == 'object') {
-          for (var item in key) this.argv[item] = key[item];
-        } else {
-          this.argv[key] = val;
-        }
-        return this.getVar();
-    }
-  
-    this.getVar = function(key) {
-        if (key) {
-          if (!this.argv[key]) return '';
-          else {
-              return this.argv[key];
-          }
-        } else {
-          var cnt = 0;
-          for(var c in this.argv) cnt++;  // XXX: 키 이름을 가진 array 는 length 속성으로 항상 0 을 벹어낸다.
-          if (cnt > 0) {
-              var _item = new Array();
-              for (var x in this.argv) if (this.argv[x]) _item[_item.length] = x + '=' + this.argv[x];
-              else continue;
-              return '?' + _item.join('&');
-          } else return '?';
-        }
-    }
+var PageUtil = function() // 페이지 처리 함수
+ {
+  var totalCnt; // 총 건수
+  var pageRows; // 한 페이지에 출력될 항목 갯수
+  var curPage; // 현재 페이지
+  var disPagepCnt;// 화면출력 페이지수
+  var totalPage;
+
+  this.setTotalPage = function()
+  {
+   this.totalPage = parseInt((this.totalCnt/this.pageRows)) + (this.totalCnt%this.pageRows>0 ? 1:0);
   }
-  
-  Paging = function(total) {
-    this.config = {
-        thisPageStyle: 'font-weight: bold;',
-        itemPerPage: 3,  // 리스트 목록수
-        pagePerView: 5      // 페이지당 네비게이션 항목수
-    }
-  
-    this.totalItem = total;
-    this.qs = new QueryString;
-  
-    this.calculate = function() {
-        this.totalPage = Math.ceil(this.totalItem / this.config.itemPerPage);
-        this.currentPage = this.qs.getVar('page');
-        if (!this.currentPage) this.currentPage = 1;
-        if (this.currentPage > this.totalPage) this.currentPage = this.totalPage;
-        this.lastPageItems = this.totalPage % this.config.itemPerPage;
-  
-        this.prevPage = this.currentPage-1;
-        this.nextPage = this.currentPage+1;
-        this.seek = this.prevPage * this.config.itemPerPage;
-        this.currentScale = parseInt(this.currentPage / this.config.pagePerView);
-        if (this.currentPage % this.config.pagePerView < 1) this.currentScale--;
-        this.totalScale = parseInt(this.totalPage / this.config.pagePerView);
-        this.lastScalePages = this.totalPage % this.config.pagePerView;
-        if (this.lastScalePages == 0) this.totalScale--;
-        this.prevPage = this.currentScale * this.config.pagePerView;
-        this.nextPage = this.prevPage + this.config.pagePerView + 1;
-    }
-  
-    this.toString = function() {
-        var ss, se;
-        this.calculate();
-        if (this.config.prevIcon) var prevBtn ='<img src="'+this.config.prevIcon+'" border="0" align="absmiddle">';
-        else var prevBtn = '◀';
-        if (this.currentPage > this.config.pagePerView) {
-          prevBtn = prevBtn.link(this.qs.setVar('page',this.prevPage));
-        }
-  
-        ss = this.prevPage + 1;
-        if ((this.currentScale >= this.totalScale) && (this.lastScalePages != 0)) se = ss + this.lastScalePages;
-        else if (this.currentScale <= -1) se = ss;
-        else se = ss + this.config.pagePerView;
-  
-        var navBtn = '';
-        for(var i = ss; i<se; i++) {
-          if (i == this.currentPage) {
-              _btn = '<span style="'+this.config.thisPageStyle+'">['+i+']</span>';
-          } else {
-              _btn = '<a href="'+this.qs.setVar('page',i)+'" style="'+this.config.otherPageStyle+'">['+i+']</a>'
-          }
-          navBtn+=_btn;
-        }
-  
-        if (this.config.prevIcon) var nextBtn ='<img src="'+this.config.nextIcon+'" border="0" align="absmiddle">';
-        else var nextBtn = '▶';
-        if (this.totalPage > this.nextPage) {
-          nextBtn = nextBtn.link(this.qs.setVar('page',this.nextPage));
-        }
-        return prevBtn+navBtn+nextBtn;
-    }
+
+  this.getPrev = function()
+  {
+   var prev    = 0;
+
+   if(this.curPage > 1)
+    prev    = this.curPage - 1;
+   else
+    prev    = 1;
+
+   return prev;
   }
+
+  this.getNext = function()
+  {
+   var next    = 0;
+
+   if(this.curPage < this.totalPage)
+    next = this.curPage + 1;
+   else
+    next = this.totalPage;
+
+   return next;
+  }
+
+  this.getPrevPage = function()
+  {
+   var prevPage    = 0;
+   var curPos      = (parseInt((this.curPage/this.disPagepCnt))+(this.curPage%this.disPagepCnt>0 ? 1:0));
+
+   if(curPos>1)
+   {
+    prevPage    = parseInt((curPos-1))*this.disPagepCnt;
+   }
+
+   return prevPage;
+  }
+
+  this.getNextPage = function()
+  {
+   var nextPage    = 0;
+   var curPos  = parseInt((parseInt((this.curPage/this.disPagepCnt))+(this.curPage%this.disPagepCnt >0 ? 1:0)));
+
+   if((curPos*this.disPagepCnt+1) <= this.totalPage)
+   {
+    nextPage    = curPos*this.disPagepCnt+1;
+   }
+
+   if( this.totalPage >= nextPage )
+   return nextPage;
+  else
+   return this.totalPage;
+ }
+
+ this.Drow = function()
+ {
+  var sb = '';
+
+  var start   = ((parseInt((this.curPage/this.disPagepCnt))+(this.curPage%this.disPagepCnt>0 ? 1:0)) * this.disPagepCnt - (this.disPagepCnt-1));
+  var end     = ((parseInt((this.curPage/this.disPagepCnt))+(this.curPage%this.disPagepCnt>0 ? 1:0)) * this.disPagepCnt);
+  if(end > this.totalPage)
+   end = this.totalPage;
+
+  if(this.curPage > this.disPagepCnt)
+  {
+   sb += "&nbsp;&nbsp;<a href='javascript:prev_page();'>◀◀</a>&nbsp;&nbsp;";
+  }
+
+  if(this.getPrev() < this.curPage)
+  {
+   sb += "&nbsp;&nbsp;<a href='javascript:prev();'>◀</a>&nbsp;&nbsp;";
+  }
+
+  for(var i=start; i<=end; i++)
+  {
+   if(i==this.curPage)
+   {
+    sb += "&nbsp;&nbsp;<b>"+i+"</b>&nbsp;&nbsp;";
+   }
+   else
+   {
+    sb += "&nbsp;&nbsp;<a href='javascript:goPage("+i+");'>"+i+"</a>&nbsp;&nbsp;";
+   }
+  }
+
+  if(this.curPage < this.getNext())
+  {
+   sb += "&nbsp;&nbsp;<a href='javascript:next();'>▶</a>&nbsp;&nbsp;";
+  }
+  if(this.totalPage > this.getNextPage() && this.getNextPage() != 0 )
+  {
+   sb += "&nbsp;&nbsp;<a href='javascript:next_page();'>▶▶</a>&nbsp;&nbsp;";
+  }
+
+  return sb;
+ }
+}
+
+
+
+//- pageUtil end
+
+var util = new PageUtil();
+
+util.totalCnt = 19; //게시물의 총 건수
+util.pageRows = 5; // 한번에 출력될 게시물 수
+util.disPagepCnt= 3; //화면 출력 페이지 수
+
+function fn_DrowPageNumber()
+{
+ parent.document.getElementById('page').innerHTML  = util.Drow();
+}
+
+function goPage(pageNo)
+{
+ util.curPage = pageNo;  
+ util.setTotalPage();
+ fn_DrowPageNumber();
+}
+
+function next_page()
+{
+ util.curPage    = util.getNextPage();
+ util.setTotalPage();
+ fn_DrowPageNumber();
+}
+
+function next()
+{
+ util.curPage    = util.getNext();
+ util.setTotalPage();
+ fn_DrowPageNumber();
+}
+
+function prev_page()
+{
+ util.curPage    = util.getNextPage();
+ util.setTotalPage();
+ fn_DrowPageNumber();
+}
+
+function prev()
+{
+ util.curPage    = util.getNext();
+ util.setTotalPage();
+ fn_DrowPageNumber();
+}
