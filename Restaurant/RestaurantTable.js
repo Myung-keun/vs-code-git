@@ -111,4 +111,4 @@ function makeResObj(name, loca, distance ,menu){
 //         paging(totalData, dataPage, pageCount, 1);
 //     });
 //     }
-}
+//}

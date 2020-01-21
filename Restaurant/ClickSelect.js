@@ -1,22 +1,23 @@
 const li = document.querySelectorAll("li");
-li.forEach(function(li){
-    li.addEventListener("click", function(){
-        
+li.forEach(function (li) {
+    li.addEventListener("click", function () {
         li.className = li.className == "" ? "menuSelected" : "";
-        if(li.className=="menuSelected" && li.id=="Korean"){  
-            tbody.innerHTML='';        
+        if (li.className == "menuSelected" && li.id == "Korean") {
+            tbody.innerHTML = '';
             console.log("한식 선택됨");
             const loadedMenu = localStorage.getItem('resInfo');
-            const parsedMenu = JSON.parse(loadedMenu);
-            
-            for(let i=0; i<parsedMenu.length; i++){
-                if(parsedMenu[i].resMenu=="한식"){
-                    console.log(parsedMenu[i].resMenu);
-                    sortTable(makeResObj(parsedMenu[i].resName, parsedMenu[i].resLoca, parsedMenu[i].resDis, parsedMenu[i].resMenu))                   
+            const storageValue = JSON.parse(loadedMenu);
+
+            for (let i = 0; i < storageValue.length; i++) {
+                if (storageValue[i].resMenu == "한식") {
+                    console.log(storageValue[i].resMenu);
+                    sortTable(makeResObj(storageValue[i].resName, storageValue[i].resLoca, storageValue[i].resDis, storageValue[i].resMenu))
                 }
             }
-        } else{
-            tbody.innerHTML='';
+        } else {
+            for (let i = 0; i < storageValue.length; i++) {
+                sortTable(makeResObj(storageValue[i].resName, storageValue[i].resLoca, storageValue[i].resDis, storageValue[i].resMenu))
+            }
         }
     });
 });
