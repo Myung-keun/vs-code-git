@@ -120,107 +120,48 @@ function makeResObj(name, loca, distance ,menu){
 
 
 //페이징 하는 함수 2
-QueryString = function(str) {
-    var str = str ? str : document.location.href;
-    this.argv = new Array();
-    this.queryString = str.split('?')[1];
-    if (!this.queryString) this.queryString = '';
-    var _argv = this.queryString.split('&');
-    for(var i=0; i<_argv.length; i++) {
-        $=_argv[i].split('=');
-        var _key = $[0];
-        var _val = $[1];
-        this.argv[_key] = $[1];
+function setPage(listCount, currentPage, kwd) {
+    var kwd = kwd; // 검색어
+    var listCount = listCount;  // 전체 게시글 수
+    var pageCount = (parseInt( listCount/ 10) + 1); // 페이지 개수
+    var currentPage = currentPage; // 현재 페이지
+    var endPage = (parseInt(pageCount/10 + 1) * 5)+1; // 최종 페이지
+    var displayPage = parseInt((currentPage + 4 ) / 5 ) * 5; // 밑에 보여줄 페이지
+
+    /* 게시글 수가 페이지 수와 딱 맞을 땐 다음 페이지 안보이게*/
+    if(parseInt( listCount% 10)==0){
+        pageCount -=1;
+    };
+    console.log("listCount", listCount);
+    console.log("pageCount", pageCount);
+    console.log("currentPage", currentPage);
+    console.log("endPage", endPage);
+    console.log("displayPage", displayPage);
+
+    var pager = $('#page');
+        if(currentPage <= 5){
+        pager.prepend('<tr>◀</tr>');
+    }else{
+        pager.append('<tr><a href=/Restaurant/Restaurant/'+(displayPage-5)+'?kwd='+kwd+'>'+'◀'+'</tr>');
     }
-  
-    if (!this.argv) this.argv = new Array();
-  
-    this.setVar = function(key,val) {
-        if (typeof key == 'object') {
-          for (var item in key) this.argv[item] = key[item];
-        } else {
-          this.argv[key] = val;
+
+    for (var i = displayPage-4; i <= displayPage; i++) {
+        if(i==currentPage){
+            pager.append('<tr class="selected">'+i+'</tr>')
+            continue;
+        }else if(i>pageCount){
+            pager.append('<tr>'+i+'</tr>')
+            continue;
         }
-        return this.getVar();
+        pager.append('<tr><a href=/Restaurant/Restaurant/'+i+'?kwd='+kwd+'>'+i+'</tr>');
     }
-  
-    this.getVar = function(key) {
-        if (key) {
-          if (!this.argv[key]) return '';
-          else {
-              return this.argv[key];
-          }
-        } else {
-          var cnt = 0;
-          for(var c in this.argv) cnt++;  // XXX: 키 이름을 가진 array 는 length 속성으로 항상 0 을 벹어낸다.
-          if (cnt > 0) {
-              var _item = new Array();
-              for (var x in this.argv) if (this.argv[x]) _item[_item.length] = x + '=' + this.argv[x];
-              else continue;
-              return '?' + _item.join('&');
-          } else return '?';
-        }
-    }
-  }
-  
-  Paging = function(total) {
-    this.config = {
-        thisPageStyle: 'font-weight: bold;',
-        itemPerPage: 3,  // 리스트 목록수
-        pagePerView: 5      // 페이지당 네비게이션 항목수
-    }
-  
-    this.totalItem = total;
-    this.qs = new QueryString;
-  
-    this.calculate = function() {
-        this.totalPage = Math.ceil(this.totalItem / this.config.itemPerPage);
-        this.currentPage = this.qs.getVar('page');
-        if (!this.currentPage) this.currentPage = 1;
-        if (this.currentPage > this.totalPage) this.currentPage = this.totalPage;
-        this.lastPageItems = this.totalPage % this.config.itemPerPage;
-  
-        this.prevPage = this.currentPage-1;
-        this.nextPage = this.currentPage+1;
-        this.seek = this.prevPage * this.config.itemPerPage;
-        this.currentScale = parseInt(this.currentPage / this.config.pagePerView);
-        if (this.currentPage % this.config.pagePerView < 1) this.currentScale--;
-        this.totalScale = parseInt(this.totalPage / this.config.pagePerView);
-        this.lastScalePages = this.totalPage % this.config.pagePerView;
-        if (this.lastScalePages == 0) this.totalScale--;
-        this.prevPage = this.currentScale * this.config.pagePerView;
-        this.nextPage = this.prevPage + this.config.pagePerView + 1;
-    }
-  
-    this.toString = function() {
-        var ss, se;
-        this.calculate();
-        if (this.config.prevIcon) var prevBtn ='<img src="'+this.config.prevIcon+'" border="0" align="absmiddle">';
-        else var prevBtn = '◀';
-        if (this.currentPage > this.config.pagePerView) {
-          prevBtn = prevBtn.link(this.qs.setVar('page',this.prevPage));
-        }
-  
-        ss = this.prevPage + 1;
-        if ((this.currentScale >= this.totalScale) && (this.lastScalePages != 0)) se = ss + this.lastScalePages;
-        else if (this.currentScale <= -1) se = ss;
-        else se = ss + this.config.pagePerView;
-  
-        var navBtn = '';
-        for(var i = ss; i<se; i++) {
-          if (i == this.currentPage) {
-              _btn = '<span style="'+this.config.thisPageStyle+'">['+i+']</span>';
-          } else {
-              _btn = '<a href="'+this.qs.setVar('page',i)+'" style="'+this.config.otherPageStyle+'">['+i+']</a>'
-          }
-          navBtn+=_btn;
-        }
-  
-        if (this.config.prevIcon) var nextBtn ='<img src="'+this.config.nextIcon+'" border="0" align="absmiddle">';
-        else var nextBtn = '▶';
-        if (this.totalPage > this.nextPage) {
-          nextBtn = nextBtn.link(this.qs.setVar('page',this.nextPage));
-        }
-        return prevBtn+navBtn+nextBtn;
-    }
-  }
+
+    var nextPage = displayPage+1
+
+    if(currentPage < endPage && endPage < pageCount){
+        pager.append('<tr><a href=/Restaurant/Restaurant/'+nextPage+ '?kwd='+kwd+'>'+'▶'+'</tr>');
+    }else{
+        pager.append('<tr>'+'▶'+'</tr>');
+}
+
+}
