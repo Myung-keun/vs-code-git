@@ -74,6 +74,8 @@ function makeAddTable() {
 
                 const arg = makeResObj(input1.value, input2.value, input3.value, sel.value);
                 printTable(arg);
+                saveToLS();
+
 
                 const btn = event.target;
                 const td = btn.parentNode;
@@ -102,9 +104,10 @@ function deleteRes(event) {
     const btn = event.target;
     const tr = btn.parentNode;
     document.querySelector("tbody").removeChild(tr);
-    //filter함수(원 배열의 id와 새로 만들어진 배열의 id값을 비교->삭제된 행의 아이디없는 배열 반환)
-    const updateLS = storageValue.filter(function (resId) {
-        return resId.id !== parseInt(tr.id); //tr.id는 string형식, 비교를위해 정수형으로 변환
+    //filter함수(원 배열의 식당이름과 삭제된 배열의 식당이름을 비교->삭제된 행의 아이디없는 배열 반환)
+    const updateLS = storageValue.filter(function (lsItems) {
+        //console.log(lsItems.resName);
+        return lsItems.resName !== tr.querySelector("td").innerText;
     });
     //filter()를 거쳐 새롭게 만들어진 배열을 원래 배열에 저장 후 LocalStorage를 덮어서 저장
     storageValue = updateLS;

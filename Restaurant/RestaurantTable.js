@@ -11,17 +11,14 @@ function printTable(resObj) {
     const td3 = document.createElement("td");
     const td4 = document.createElement("td");
     const delBtn = document.createElement("button"); //메뉴 옆에 삭제버튼 생성예정
-    const newId = storageValue.length + 1; //retaurant 정보에 고유 id부여
 
     tbody.appendChild(tr);
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
-    tr.appendChild(td4);
-    
+    tr.appendChild(td4); 
     tr.appendChild(delBtn);
 
-    tr.id = newId; //생성되는 행에 id순서 추가 -> 삭제시 id로 LS에 저장하기 위해.
     td1.innerText = resObj.resName;
     td2.innerText = resObj.resLoca;
     td3.innerText = resObj.resDis + "분";
@@ -35,7 +32,6 @@ function printTable(resObj) {
     storageValue.sort(function(a,b){
         return a["resDis"] - b["resDis"];
     })
-    saveToLS();
 
     delBtn.addEventListener("click", deleteRes);
     tr = clickTr(tr);
@@ -43,13 +39,11 @@ function printTable(resObj) {
 }
 
 function makeResObj(name, loca, distance ,menu){
-    const newId = storageValue.length;
     return {
         resName: name,
         resLoca: loca,
         resDis: distance,
-        resMenu: menu,
-        id: newId+1
+        resMenu: menu
     };
 }
 

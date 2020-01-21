@@ -73,8 +73,8 @@ function loadLS() {
         initValue = makeResObj("마피아분식", "선정릉역 근처",10, "양식");
         printTable(initValue);
         
+        saveToLS();
     }
 }
-
 
 loadLS();
