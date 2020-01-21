@@ -118,7 +118,7 @@ function (startIndex){
 
 		$("table tbody").click(function (e) {
 
-			paging($(this).attr('id'));
+			page($(this).attr('id'));
 
 		});
 
