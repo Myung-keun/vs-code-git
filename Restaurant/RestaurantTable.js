@@ -52,3 +52,63 @@ function makeResObj(name, loca, distance ,menu){
         id: newId
     };
 }
+
+//페이징하는 함수
+// var totalData = 19; //총 데이터 수
+// var dataPerPage = 5; //한 페이지에 나타낼 데이터 수
+// var pageCount = 3; //한 화면에 나타낼 페이지 수
+
+// function paging(totalData, dataPerPage, pageCount){
+//     console.log("currentPage : " + currentPage);
+
+//     var totalPage = Math.ceil(totalData/dataPerPage); //총 페이지수
+//     var pageGroup = Math.ceil(currentPage/pageCount); //페이지그룹
+
+//     console.log("pageGroup : " + pageGroup);
+
+//     var last = pageGroup * pageCount; //화면에 보여질 마지막 페이지 번호
+//     if(last > totalPage) 
+//         last = totalPage;
+//     var first = last - (pageCount-1); //화면에 보여딜 첫번째 페이지 번호
+//     var next = last+1;
+//     var prev = first-1;
+
+//     console.log("last : " + last);
+//     console.log("first : " + first);
+//     console.log("next : " + next);
+//     console.log("prev : " + prev);
+
+//     var $pingingView = $("table tbody");
+
+//     var html = "";
+
+//     if(prev>0)
+//     html += "<a href =# id='prev'><</a>";
+
+//     for(var i =first, i <= last; i++){
+//         html += "<a href ='#' id="+i+">"+i+"</a>";
+
+//     if(last<totalPage)
+//     html += "<a href =# id='next'>></a>";
+
+//     $("table tbody").html(html); //페이지목록생성
+//     $("table tbody" + currentPage).css({"text-decoration" : "none",
+//                                         "color" : "red",
+//                                         "font-weight" : "bold"}); //현재 페이지 표시
+
+//     $("table tbody").click(function(){
+//         var $item = $(this);
+//         var $id = $item.attr("id");
+//         var selectPage = $item.text();
+
+//         if($id == "next") selectPage = next;
+//         if($id == "prev") selectPage = prev;
+
+//         paging(totalData, dataPage, pagrCount, selectPage);
+//     });
+
+//     $("document").ready(function(){
+//         paging(totalData, dataPage, pageCount, 1);
+//     });
+//     }
+}
