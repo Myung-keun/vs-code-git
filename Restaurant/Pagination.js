@@ -47,7 +47,7 @@ if(totalPageList>pageList){
     pageInner+=""+"▶▶"+"";
 }
 
-document.getElementById("page").innerHTML=pageInner;
+document.getElementById("pagination").innerHTML=pageInner;
 function prevPage(){
     currentPage-=pageCount;
     pageList=Math.ceil(currentPage/pageCount);
