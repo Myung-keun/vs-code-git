@@ -161,6 +161,42 @@ button{
     color:#fff;
 }
 
+.pagenumbers{
+    margin:0 auto;
+    width:250px;
+    margin-bottom: 25px;
+    text-align:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.pagenumbers button{
+    width: 25px;
+    height: 25px;
+
+    appearance: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    background-color: orange;
+
+    margin: 5px;
+    transition: 0.5s;
+
+    color: #fff;
+    font-size: 18px;
+}
+
+.pagenumbers button:hover{
+    background-color: #44eeaa;
+}
+
+.pagenumbers button.active{
+    background-color: #44eeaa;
+}
+
 .clickbox{
     margin:0 auto;
     width:250px;

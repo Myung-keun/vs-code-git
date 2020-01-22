@@ -1,7 +1,7 @@
 
 
 const list_element = document.querySelector('#list');
-const pagination_element = document.getElementById('pagination');
+const pagination_element = document.querySelector('#pagination');
 
 //default: 현재 페이지 1, 출력행 5개씩
 let current_page = 1;
@@ -23,4 +23,40 @@ function DisplayList(items, wrapper, rows_per_page, page){
     }
 }
 
+//전달받은 행 갯수를 바탕으로 페이지 네비게이션 생성
+function SetupPagination(items, wrapper, rows_per_page){
+    wrapper.innerHTML="";
+
+    //전달받은 행 나누기 페이지 당 행 갯수 (올림)
+    let page_count = Math.ceil(items.length / rows_per_page);
+
+    //페이지 네비게이션의 설정된 버튼갯수 생성 
+    for (let i = 1; i <page_count +1; i++){
+       let btn = PaginationButton(i, items);
+        wrapper.appendChild(btn);
+    }
+}
+
+//버튼 생성 함수
+function PaginationButton(page, items){   
+    let button = document.createElement("button");
+    button.innerText = page;
+
+    //전달받은 페이지가 현재 페이지와 같다면 active클래스 부여.
+    if(current_page == page){button.className='active'}
+
+    button.addEventListener("click",function(){
+        current_page = page;
+        DisplayList(items, list_element, rows, current_page);
+
+        let current_btn = document.querySelector(".pagenumbers button.active");
+        current_btn.classList.remove("active");
+
+        button.className="active";
+    });
+
+    return button;
+}
+
 DisplayList(storageValue, list_element, rows, current_page);
+SetupPagination(storageValue, pagination_element, rows);
