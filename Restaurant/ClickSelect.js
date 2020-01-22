@@ -14,12 +14,13 @@ function initPaging(){
             SetupPagination(storageValue, pagination_element, rows);
         } 
         else if(paging.className == ""){
-            paging.innerText = "전체 보기 (5개씩 보려면 클릭)";
-            DisplayList(storageValue, list_element, 50, current_page);
+            paging.innerText = "전체 보기";
+            DisplayList(storageValue, list_element, 50, 1);
             SetupPagination(storageValue, pagination_element,50);
         }
     })
 }
+
 
 
 
