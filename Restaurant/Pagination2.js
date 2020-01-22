@@ -13,6 +13,11 @@ function DisplayList(items, wrapper, rows_per_page, page){
     let end = start + rows_per_page; //시작시: 0+5 == 5, 2페이지: 5+5 == 10
     let paginatedItems = items.slice(start, end); // 0~5까지 잘라서 넣어줌.
     console.log(paginatedItems);
+
+    for(let i = 0; i < paginatedItems.length; i++){
+        let item = paginatedItems;
+        sortTable(item[i]);
+    }
 }
 
 //전달받은 행 갯수를 바탕으로 페이지 네비게이션 생성
