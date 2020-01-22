@@ -58,11 +58,11 @@ var endPageList = startPageList+pageCount-1;
 
 if(startPageList<1) startPageList=1;
 if(endPageList>totalPage) endPageList=totalPage;
-if(endPageLiat<1) endPageList=1;
+if(endPageList<1) endPageList=1;
 
 var pageInner="";
-alert("현재페이지"+currentPage);
-if(pageList!=1){
+
+if(pageList!==1){
     pageInner+=""+"◀◀"+"";
 }
 for(var i=startPageList; i<=endPageList; i++){
@@ -75,10 +75,19 @@ if(totalPageList>pageList){
 
 document.getElementById("page").innerHTML=pageInner;
 function prevPage(){
-    currentPage=pageCount;
+    currentPage-=pageCount;
     pageList=Math.ceil(currentPage/pageCount);
     currentPage=(pageList-1)*pageCount+pageCount;
     document.frm.currentPage.value=currentPage;
+    document.frm.action="/Restaurant/Restaurant.do";
+    document.frm.submit();
+}
+
+function nextPage(){
+    currentPage+=pageCount;
+    pageList=Math.ceil(currentPage/pageCount);
+    currentPage=(pageList-1)*pageCount+1;
+    document.frm.currentPage.value=curentPage;
     document.frm.action="/Restaurant/Restaurant.do";
     document.frm.submit();
 }
