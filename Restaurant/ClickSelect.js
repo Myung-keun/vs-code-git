@@ -1,7 +1,27 @@
-const li = document.querySelectorAll("li");
+const li = document.querySelectorAll(".menu li");
 const table = document.querySelector(".mainTable");
 const tbody = table.querySelector("tbody");
 const selMenu = document.getElementsByClassName("menuSelected");
+const paging = document.getElementById("paging");
+
+function initPaging(){
+    paging.addEventListener("click",function(){
+        paging.className = paging.className == "" ? "toggle" : "";
+
+        if(paging.className == "toggle"){
+            paging.innerText = "5개씩 보기";
+            DisplayList(storageValue, list_element, rows, current_page);
+            SetupPagination(storageValue, pagination_element, rows);
+        } 
+        else if(paging.className == ""){
+            paging.innerText = "전체 보기 (5개씩 보려면 클릭)";
+            DisplayList(storageValue, list_element, 50, current_page);
+            SetupPagination(storageValue, pagination_element,50);
+        }
+    })
+}
+
+
 
 li.forEach(function (li) {
     li.addEventListener("click", function () {
@@ -177,3 +197,5 @@ function ranSelect() {
     let random = Math.floor(Math.random() * count);
     alert("\n식당이름: " + temp[random].querySelector("td").innerText + " \n위치: " + temp[random].querySelectorAll("td")[1].innerText + "\n회사에서 " + temp[random].querySelectorAll("td")[2].innerText + "거리");
 }
+
+initPaging();

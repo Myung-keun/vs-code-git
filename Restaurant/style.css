@@ -13,6 +13,13 @@
 ul{
     list-style:none;
 }
+#paging{
+    width: 460px;
+}
+#paging:hover{
+    background-color: yellowgreen;
+    color: white;
+}
 
 li{
     display:table-cell;
@@ -26,7 +33,7 @@ li{
     cursor: pointer;
 }
 
-li:hover{
+.menu li:hover{
     background-color:orange;
     font-weight: bold;
     color:#fff;

@@ -56,5 +56,3 @@ function PaginationButton(page, items){
     return button;
 }
 
-DisplayList(storageValue, list_element, rows, current_page);
-SetupPagination(storageValue, pagination_element, rows);
