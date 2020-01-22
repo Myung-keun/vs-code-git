@@ -28,6 +28,7 @@ li.forEach(function (li) {
 
 
 function sortTable(selectedInfo) {
+
     const tbody = table.querySelector("tbody");
     let tr = document.createElement("tr");
     const td1 = document.createElement("td");
@@ -49,9 +50,11 @@ function sortTable(selectedInfo) {
     td4.innerText = selectedInfo.resMenu;
 
     delBtn.innerText = "X";
-
     delBtn.addEventListener("click", deleteRes);
     tr = clickTr(tr);
+
+    // let tempObj = makeResObj(selectedInfo.resName, selectedInfo.resLoca, selectedInfo.resDis, selectedInfo.resMenu)
+    // storageValue.push(tempObj);
 }
 
 function clickTr(tr) {
@@ -66,12 +69,21 @@ function sortKor() {
     console.log("한식");
     const loadedMenu = localStorage.getItem('resInfo');
     const storageValue = JSON.parse(loadedMenu);
-
+    let tempArray = [];
     for (let i = 0; i < storageValue.length; i++) {
-        if (storageValue[i].resMenu == "한식") {
-            sortTable(makeResObj(storageValue[i].resName, storageValue[i].resLoca, storageValue[i].resDis, storageValue[i].resMenu))
+        if (storageValue[i].resMenu == "한식") {           
+            let tempObj = makeResObj(
+                storageValue[i].resName,
+                storageValue[i].resLoca, 
+                storageValue[i].resDis, 
+                storageValue[i].resMenu)
+            tempArray.push(tempObj);
+                       
         }
     }
+    //console.log(tempArray)
+    DisplayList(tempArray, list_element, rows, 1);
+    SetupPagination(tempArray, pagination_element, rows);
 }
 
 function sortChi(){
@@ -79,12 +91,20 @@ function sortChi(){
     console.log("중식");
     const loadedMenu = localStorage.getItem('resInfo');
     const storageValue = JSON.parse(loadedMenu);
+    let tempArray = [];
 
     for (let i = 0; i < storageValue.length; i++) {
         if (storageValue[i].resMenu == "중식") {
-            sortTable(makeResObj(storageValue[i].resName, storageValue[i].resLoca, storageValue[i].resDis, storageValue[i].resMenu))
+            let tempObj = makeResObj(
+                storageValue[i].resName, 
+                storageValue[i].resLoca, 
+                storageValue[i].resDis, 
+                storageValue[i].resMenu)
+            tempArray.push(tempObj); 
         }
     }
+    DisplayList(tempArray, list_element, rows, 1);
+    SetupPagination(tempArray, pagination_element, rows);
 }
 
 function sortJap(){
@@ -92,12 +112,20 @@ function sortJap(){
     console.log("일식");
     const loadedMenu = localStorage.getItem('resInfo');
     const storageValue = JSON.parse(loadedMenu);
+    let tempArray = [];
 
     for (let i = 0; i < storageValue.length; i++) {
         if (storageValue[i].resMenu == "일식") {
-            sortTable(makeResObj(storageValue[i].resName, storageValue[i].resLoca, storageValue[i].resDis, storageValue[i].resMenu))
+            let tempObj = makeResObj(
+                storageValue[i].resName, 
+                storageValue[i].resLoca, 
+                storageValue[i].resDis, 
+                storageValue[i].resMenu)
+            tempArray.push(tempObj);    
         }
     }
+    DisplayList(tempArray, list_element, rows, 1);
+    SetupPagination(tempArray, pagination_element, rows);
 }
 
 function sortForeign(){
@@ -108,16 +136,29 @@ function sortForeign(){
 
     for (let i = 0; i < storageValue.length; i++) {
         if (storageValue[i].resMenu == "양식") {
-            sortTable(makeResObj(storageValue[i].resName, storageValue[i].resLoca, storageValue[i].resDis, storageValue[i].resMenu))
+            sortTable(makeResObj(
+                storageValue[i].resName, 
+                storageValue[i].resLoca, 
+                storageValue[i].resDis, 
+                storageValue[i].resMenu)
+                )
         }
     }
 }
 
 function cancelSort() {
     tbody.innerHTML = '';
+    let tempArray = [];
     for (let i = 0; i < storageValue.length; i++) {
-        sortTable(makeResObj(storageValue[i].resName, storageValue[i].resLoca, storageValue[i].resDis, storageValue[i].resMenu))
+        tempObj = makeResObj(
+            storageValue[i].resName, 
+            storageValue[i].resLoca, 
+            storageValue[i].resDis, 
+            storageValue[i].resMenu)
+        tempArray.push(tempObj);
     }
+    DisplayList(tempArray, list_element, rows, 1);
+    SetupPagination(tempArray, pagination_element, rows);
 }
 
 /*선택된 tr에서 랜덤으로 식당의 정보를 alert로 보여주는 함수*/

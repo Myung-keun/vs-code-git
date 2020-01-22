@@ -40,16 +40,17 @@ function PaginationButton(page, items){
     button.innerText = page;
 
     //전달받은 페이지가 현재 페이지와 같다면 active클래스 부여.
-    if(current_page == page){button.className='active'}
+    if (current_page == page) { button.className = 'active'; }
 
     button.addEventListener("click",function(){
         current_page = page;
         DisplayList(items, list_element, rows, current_page);
 
         let current_btn = document.querySelector(".pagenumbers button.active");
+        
         current_btn.classList.remove("active");
-
         button.className="active";
+        
     });
 
     return button;
