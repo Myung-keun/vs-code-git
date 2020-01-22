@@ -1,46 +1,20 @@
-//페이징하는 함수
-// function setPage(listCount, currentPage) {
-//     var listCount = listCount;  // 전체 게시글 수
-//     var pageCount = (parseInt( listCount/ 5) + 1); // 페이지 개수
-//     var currentPage = currentPage; // 현재 페이지
-//     var endPage = (parseInt(pageCount/10 + 1) * 5)+1; // 최종 페이지
-//     var displayPage = parseInt((currentPage + 4 ) / 5 ) * 5; // 밑에 보여줄 페이지
 
-//     /* 게시글 수가 페이지 수와 딱 맞을 땐 다음 페이지 안보이게*/
-//     if(parseInt( listCount% 5)==0){
-//         pageCount -=1;
-//     };
-//     console.log("listCount", listCount);
-//     console.log("pageCount", pageCount);
-//     console.log("currentPage", currentPage);
-//     console.log("endPage", endPage);
-//     console.log("displayPage", displayPage);
 
-//     var pager = $('#page');
-//         if(currentPage <= 5){
-//         pager.prepend('<tr>◀</tr>');
-//     }else{
-//         pager.append('<tr><a href=/Restaurant/Restaurant/'+(displayPage-5)+'?kwd='+kwd+'>'+'◀'+'</tr>');
-//     }
+const list_element = document.querySelector('#list');
+const pagination_element = document.getElementById('pagination');
 
-//     for (var i = displayPage-4; i <= displayPage; i++) {
-//         if(i==currentPage){
-//             pager.append('<tr class="selected">'+i+'</tr>')
-//             continue;
-//         }else if(i>pageCount){
-//             pager.append('<tr>'+i+'</tr>')
-//             continue;
-//         }
-//         pager.append('<tr><a href=/Restaurant/Restaurant/'+i+'?kwd='+kwd+'>'+i+'</tr>');
-//     }
+//default: 현재 페이지 1, 출력행 5개씩
+let current_page = 1;
+let rows = 5;
 
-//     var nextPage = displayPage+1
+function DisplayList(items, wrapper, rows_per_page, page){
+    wrapper.innerHTML = ""; //처음 생성시 list목록 초기화 해줘야함 => tbody 초기화
+    page--; //page == 1 기준으로array[0] 부터 시작해야 하기 때문에
 
-//     if(currentPage < endPage && endPage < pageCount){
-//         pager.append('<tr><a href=/Restaurant/Restaurant/'+nextPage+ '?kwd='+kwd+'>'+'▶'+'</tr>');
-//     }else{
-//         pager.append('<tr>'+'▶'+'</tr>');
-// }
+    let start = rows_per_page * page; //시작 시 5*0 == 0 , 2페이지: 5*1 == 5
+    let end = start + rows_per_page; //시작시: 0+5 == 5, 2페이지: 5+5 == 10
+    let paginatedItems = items.slice(start, end); // 0~5까지 잘라서 넣어줌.
+    console.log(paginatedItems);
 
 // }
 
@@ -96,4 +70,5 @@ function goPage(num){
     document.frm.surrentPage.value=num;
     document.frm.action="/Restaurant/Restaurant.do";
     document.frm.submit();
+}
 }
