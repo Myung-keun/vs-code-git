@@ -8,7 +8,6 @@ function saveToLS() {
 function loadLS() {
     //LS에 저장된 resInfo라는 키값을 가진 내용을 loadedInfo에 담아둠.
     const loadedInfo = JSON.parse(localStorage.getItem('resInfo'));
-    console.log(loadedInfo)
     //LS에 저장된 값이 있을 경우 LS내용을 바탕으로 table 생성
     
     if (loadedInfo !== null) {

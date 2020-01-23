@@ -5,18 +5,29 @@ const selMenu = document.getElementsByClassName("menuSelected");
 const paging = document.getElementById("paging");
 
 function initPaging(){
+    paging.addEventListener("mouseout",function(){
+        if(paging.innerText == "전체 보기") {paging.innerText = "5개씩 보기"}
+        else {paging.innerText="전체 보기"}
+    })
+
+    paging.addEventListener("mouseover",function(){
+        if(paging.innerText == "전체 보기") {paging.innerText = "5개씩 보기"}
+        else {paging.innerText="전체 보기"}
+    })
+
     paging.addEventListener("click",function(){
         paging.className = paging.className == "" ? "toggle" : "";
 
         if(paging.className == "toggle"){
             paging.innerText = "5개씩 보기";
-            DisplayList(storageValue, list_element, rows, current_page);
-            SetupPagination(storageValue, pagination_element, rows);
+            DisplayList(storageValue, list_element, 50, 1);
+            pagination_element.innerHTML="";
+            //SetupPagination(storageValue, pagination_element, rows);
         } 
         else if(paging.className == ""){
             paging.innerText = "전체 보기";
-            DisplayList(storageValue, list_element, 50, 1);
-            SetupPagination(storageValue, pagination_element,50);
+            DisplayList(storageValue, list_element, rows, current_page);
+            SetupPagination(storageValue, pagination_element,rows);
         }
     })
 }
@@ -93,18 +104,18 @@ function sortKor() {
     let tempArray = [];
     for (let i = 0; i < storageValue.length; i++) {
         if (storageValue[i].resMenu == "한식") {           
-            let tempObj = makeResObj(
+            sortTable(makeResObj(
                 storageValue[i].resName,
                 storageValue[i].resLoca, 
                 storageValue[i].resDis, 
-                storageValue[i].resMenu)
-            tempArray.push(tempObj);
-                       
+                storageValue[i].resMenu))
+            //tempArray.push(tempObj);                     
         }
     }
+    pagination_element.innerHTML=""; //pageNavigator 삭제
     //console.log(tempArray)
-    DisplayList(tempArray, list_element, rows, 1);
-    SetupPagination(tempArray, pagination_element, rows);
+    // DisplayList(tempArray, list_element, rows, 1);
+    // SetupPagination(tempArray, pagination_element, rows);
 }
 
 function sortChi(){
@@ -116,16 +127,17 @@ function sortChi(){
 
     for (let i = 0; i < storageValue.length; i++) {
         if (storageValue[i].resMenu == "중식") {
-            let tempObj = makeResObj(
+            sortTable(makeResObj(
                 storageValue[i].resName, 
                 storageValue[i].resLoca, 
                 storageValue[i].resDis, 
-                storageValue[i].resMenu)
-            tempArray.push(tempObj); 
+                storageValue[i].resMenu))
+            //tempArray.push(tempObj); 
         }
     }
-    DisplayList(tempArray, list_element, rows, 1);
-    SetupPagination(tempArray, pagination_element, rows);
+    pagination_element.innerHTML="";
+    //DisplayList(tempArray, list_element, rows, 1);
+    //SetupPagination(tempArray, pagination_element, rows);
 }
 
 function sortJap(){
@@ -137,16 +149,17 @@ function sortJap(){
 
     for (let i = 0; i < storageValue.length; i++) {
         if (storageValue[i].resMenu == "일식") {
-            let tempObj = makeResObj(
+            sortTable(makeResObj(
                 storageValue[i].resName, 
                 storageValue[i].resLoca, 
                 storageValue[i].resDis, 
-                storageValue[i].resMenu)
-            tempArray.push(tempObj);    
+                storageValue[i].resMenu))
+            //tempArray.push(tempObj);    
         }
     }
-    DisplayList(tempArray, list_element, rows, 1);
-    SetupPagination(tempArray, pagination_element, rows);
+    pagination_element.innerHTML="";
+    //DisplayList(tempArray, list_element, rows, 1);
+    //SetupPagination(tempArray, pagination_element, rows);
 }
 
 function sortForeign(){
@@ -165,6 +178,7 @@ function sortForeign(){
                 )
         }
     }
+    pagination_element.innerHTML="";
 }
 
 function cancelSort() {
