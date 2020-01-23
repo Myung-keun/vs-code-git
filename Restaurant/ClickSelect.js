@@ -29,7 +29,7 @@ function initPaging(){
 
         if(paging.className == "totalView"){
             paging.className="default";
-            paging.innerText = "전체 보기";
+            paging.innerText = pagingText[1];
             DisplayList(storageValue, list_element, rows, current_page);           
             SetupPagination(storageValue, pagination_element, rows);
         } 
@@ -38,7 +38,6 @@ function initPaging(){
             paging.innerText = pagingText[0];
             DisplayList(storageValue, list_element, 50, 1);
             pagination_element.innerHTML="";
-            //SetupPagination(storageValue, pagination_element,rows);
         }
     })
 }
@@ -72,7 +71,6 @@ li.forEach(function (li) {
             paging.innerText=menuText[3];
             sortForeign();
         }
-        console.log(paging.innerText);
     })
 })
 
@@ -102,9 +100,6 @@ function sortTable(selectedInfo) {
     delBtn.innerText = "X";
     delBtn.addEventListener("click", deleteRes);
     tr = clickTr(tr);
-
-    // let tempObj = makeResObj(selectedInfo.resName, selectedInfo.resLoca, selectedInfo.resDis, selectedInfo.resMenu)
-    // storageValue.push(tempObj);
 }
 
 function clickTr(tr) {
@@ -116,32 +111,25 @@ function clickTr(tr) {
 
 function sortKor() {
     tbody.innerHTML = '';
-    console.log("한식");
     const loadedMenu = localStorage.getItem('resInfo');
     const storageValue = JSON.parse(loadedMenu);
-    let tempArray = [];
     for (let i = 0; i < storageValue.length; i++) {
         if (storageValue[i].resMenu == "한식") {           
             sortTable(makeResObj(
                 storageValue[i].resName,
                 storageValue[i].resLoca, 
                 storageValue[i].resDis, 
-                storageValue[i].resMenu))
-            //tempArray.push(tempObj);                     
+                storageValue[i].resMenu))                    
         }
     }
     pagination_element.innerHTML=""; //pageNavigator 삭제
-    //console.log(tempArray)
-    // DisplayList(tempArray, list_element, rows, 1);
-    // SetupPagination(tempArray, pagination_element, rows);
+
 }
 
 function sortChi(){
     tbody.innerHTML = '';
-    console.log("중식");
     const loadedMenu = localStorage.getItem('resInfo');
     const storageValue = JSON.parse(loadedMenu);
-    let tempArray = [];
 
     for (let i = 0; i < storageValue.length; i++) {
         if (storageValue[i].resMenu == "중식") {
@@ -150,20 +138,16 @@ function sortChi(){
                 storageValue[i].resLoca, 
                 storageValue[i].resDis, 
                 storageValue[i].resMenu))
-            //tempArray.push(tempObj); 
         }
     }
     pagination_element.innerHTML="";
-    //DisplayList(tempArray, list_element, rows, 1);
-    //SetupPagination(tempArray, pagination_element, rows);
 }
 
 function sortJap(){
     tbody.innerHTML = '';
-    console.log("일식");
     const loadedMenu = localStorage.getItem('resInfo');
     const storageValue = JSON.parse(loadedMenu);
-    let tempArray = [];
+
 
     for (let i = 0; i < storageValue.length; i++) {
         if (storageValue[i].resMenu == "일식") {
@@ -171,18 +155,14 @@ function sortJap(){
                 storageValue[i].resName, 
                 storageValue[i].resLoca, 
                 storageValue[i].resDis, 
-                storageValue[i].resMenu))
-            //tempArray.push(tempObj);    
+                storageValue[i].resMenu))   
         }
     }
     pagination_element.innerHTML="";
-    //DisplayList(tempArray, list_element, rows, 1);
-    //SetupPagination(tempArray, pagination_element, rows);
 }
 
 function sortForeign(){
     tbody.innerHTML = '';
-    console.log("양식");
     const loadedMenu = localStorage.getItem('resInfo');
     const storageValue = JSON.parse(loadedMenu);
 

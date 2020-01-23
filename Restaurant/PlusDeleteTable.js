@@ -47,7 +47,7 @@ function makeAddTable() {
 
         tr.appendChild(td3);
         td3.appendChild(input3);
-        input3.placeholder = "거리 입력";
+        input3.placeholder = "거리: 숫자만!";
 
         tr.appendChild(td4);
         td4.appendChild(sel);

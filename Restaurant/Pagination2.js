@@ -12,7 +12,6 @@ function DisplayList(items, wrapper, rows_per_page, page){
     let start = rows_per_page * page; //시작 시 5*0 == 0 , 2페이지: 5*1 == 5
     let end = start + rows_per_page; //시작시: 0+5 == 5, 2페이지: 5+5 == 10
     let paginatedItems = items.slice(start, end); // 0~5까지 잘라서 넣어줌.
-    console.log(paginatedItems);
 
     for(let i = 0; i < paginatedItems.length; i++){
         let item = paginatedItems;

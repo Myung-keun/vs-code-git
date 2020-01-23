@@ -76,8 +76,7 @@ function loadLS() {
 
         initValue = makeResObj("마피아분식", "선정릉역 근처",10, "양식");
         storageValue.push(initValue);
-        
-        console.log(storageValue);
+
         saveToLS();
         storageValue.sort(function(a,b){
             return a["resDis"] - b["resDis"];
