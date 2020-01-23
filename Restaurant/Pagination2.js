@@ -54,6 +54,6 @@ function PaginationButton(page, items){
 
     return button;
 }
-
+//페이지 새로고침 시 5행 1페이지로 초기화
 DisplayList(storageValue, list_element, rows, 1);
 SetupPagination(storageValue, pagination_element, rows);

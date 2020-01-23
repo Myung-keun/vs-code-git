@@ -6,7 +6,7 @@ const paging = document.getElementById("paging");
 let pagingText = ["5개씩 보기","전체 보기","초기화"];
 let menuText = ["한식 목록","중식 목록","일식 목록","양식 목록"];
 
-function initPaging(){
+function initNavigator(){
     paging.className="default";
     paging.addEventListener("mouseout",function(){
         if(selMenu.length > 0){paging.innerText=selMenu[0].innerText+' 목록'}
@@ -44,6 +44,7 @@ function initPaging(){
 
 
 
+//메뉴바 클릭시 동작할 함수 지정
 
 li.forEach(function (li) {
     li.addEventListener("click", function () {
@@ -211,4 +212,4 @@ function ranSelect() {
     alert("\n식당이름: " + temp[random].querySelector("td").innerText + " \n위치: " + temp[random].querySelectorAll("td")[1].innerText + "\n회사에서 " + temp[random].querySelectorAll("td")[2].innerText + "거리");
 }
 
-initPaging();
+initNavigator();
