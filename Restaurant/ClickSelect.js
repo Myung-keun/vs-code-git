@@ -3,31 +3,42 @@ const table = document.querySelector(".mainTable");
 const tbody = table.querySelector("tbody");
 const selMenu = document.getElementsByClassName("menuSelected");
 const paging = document.getElementById("paging");
+let pagingText = ["5개씩 보기","전체 보기","초기화"];
+let menuText = ["한식 목록","중식 목록","일식 목록","양식 목록"];
 
 function initPaging(){
+    paging.className="default";
     paging.addEventListener("mouseout",function(){
-        if(paging.innerText == "전체 보기") {paging.innerText = "5개씩 보기"}
-        else {paging.innerText="전체 보기"}
+        if(selMenu.length > 0){paging.innerText=selMenu[0].innerText+' 목록'}
+        if(paging.className=="default" && selMenu.length != 1){paging.innerText = pagingText[1]}
+        if(paging.className=="totalView" && selMenu.length != 1){paging.innerText=pagingText[0]}
     })
 
     paging.addEventListener("mouseover",function(){
-        if(paging.innerText == "전체 보기") {paging.innerText = "5개씩 보기"}
-        else {paging.innerText="전체 보기"}
+        if(selMenu.length > 0 ){paging.innerText=pagingText[2]}
+        if(paging.className=="default" && selMenu.length != 1){paging.innerText = "클릭시 "+paging.innerText}
+        if(paging.className=="totalView" && selMenu.length !=1){paging.innerText="클릭시 "+pagingText[0]}
     })
 
     paging.addEventListener("click",function(){
-        paging.className = paging.className == "" ? "toggle" : "";
 
-        if(paging.className == "toggle"){
-            paging.innerText = "5개씩 보기";
+        //클릭시 menu정렬 초기화
+        li.forEach(function(li){
+            li.className = "";
+        })
+
+        if(paging.className == "totalView"){
+            paging.className="default";
+            paging.innerText = "전체 보기";
+            DisplayList(storageValue, list_element, rows, current_page);           
+            SetupPagination(storageValue, pagination_element, rows);
+        } 
+        else if(paging.className == "default"){
+            paging.className="totalView";
+            paging.innerText = pagingText[0];
             DisplayList(storageValue, list_element, 50, 1);
             pagination_element.innerHTML="";
-            //SetupPagination(storageValue, pagination_element, rows);
-        } 
-        else if(paging.className == ""){
-            paging.innerText = "전체 보기";
-            DisplayList(storageValue, list_element, rows, current_page);
-            SetupPagination(storageValue, pagination_element,rows);
+            //SetupPagination(storageValue, pagination_element,rows);
         }
     })
 }
@@ -41,20 +52,27 @@ li.forEach(function (li) {
             li.className = "menuSelected";
         } else if (li.className == "menuSelected" && selMenu.length < 2) {
             li.className = "";
+            paging.className="default";
+            paging.innerText=pagingText[1];
             cancelSort();
         } else {
             alert("중복값은 허용하지 않습니다 ㅜㅜ")
         }
 
         if (li.className == "menuSelected" && li.id == "Korean") {
+            paging.innerText=menuText[0];
             sortKor();
         } else if (li.className == "menuSelected" && li.id == "Chinese") {
+            paging.innerText=menuText[1];
             sortChi();
         } else if (li.className == "menuSelected" && li.id == "Japanese") {
+            paging.innerText=menuText[2];
             sortJap();
         } else if (li.className == "menuSelected" && li.id == "Foreign") {
+            paging.innerText=menuText[3];
             sortForeign();
         }
+        console.log(paging.innerText);
     })
 })
 
