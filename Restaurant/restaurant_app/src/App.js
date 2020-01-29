@@ -1,4 +1,5 @@
 import React from 'react';
+import PaintTable from './paintTable';
 
 function App() {
   const style = {
@@ -34,7 +35,9 @@ function App() {
             <td>삭제</td>
           </tr>
         </thead>
-        <tbody id="list"></tbody>
+        <tbody id="list">
+          <PaintTable />
+        </tbody>
       </table>
       <div class="pagenumbers" id="pagination">
 
