@@ -1,5 +1,6 @@
 import React from 'react';
 import PaintTable from './paintTable';
+import PlusRes from './plusRes';
 
 function App() {
   const style = {
@@ -45,7 +46,9 @@ function App() {
       <div class="bt">
         <button class="plus" style={style}>+</button>
       </div>
-      <div class="addedTable"></div>
+      <div class="addedTable">
+        <PlusRes/>
+      </div>
       <div class="clickbox">
         <button id="clicks">이 중에 갈 식당은?</button>
       </div>
