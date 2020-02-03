@@ -12,8 +12,9 @@ class PaintTable extends Component{
         }
     
 
-    clickDelete = () => {
-        console.log(this.props.resInfo);
+    handleRemove= () => {
+        const {resInfo, onRemove} = this.props;
+        onRemove(resInfo.id);
     }
 
     render(){
@@ -24,7 +25,7 @@ class PaintTable extends Component{
                 <td>{resLoca}</td>
                 <td>{resDis}</td>
                 <td>{resMenu}</td>
-                <td><button onClick={this.clickDelete}>X</button></td>
+                <td><button onClick={this.handleRemove}>X</button></td>
             </tr>
         )
     }

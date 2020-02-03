@@ -91,6 +91,14 @@ class App extends Component {
     })
     console.log(data);
   }
+
+  handleRemove = (id) => {
+    const { resInfo } = this.state;
+    this.setState({
+      resInfo: resInfo.filter(info => info.id !== id)
+    })
+  }
+
   render() {
     const {resInfo} = this.state;
     return (
@@ -122,7 +130,8 @@ class App extends Component {
           </thead>
           <tbody id="list">
             <PlusRes 
-            data = {this.state.resInfo}/>
+            data = {this.state.resInfo}
+            onRemove = {this.handleRemove}/>
           </tbody>
         </table>
         <div className="pagenumbers" id="pagination">
