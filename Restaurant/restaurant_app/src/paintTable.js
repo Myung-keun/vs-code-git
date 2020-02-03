@@ -31,6 +31,4 @@ class PaintTable extends Component{
     }
 }
 
-
-
 export default PaintTable;

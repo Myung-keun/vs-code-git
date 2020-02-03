@@ -10,7 +10,7 @@ const style = {
 };
 
 class App extends Component {
-  id = 5
+  id = 11
   state = {
     resInfo: [
       {
@@ -83,13 +83,23 @@ class App extends Component {
     ]
   }
 
+  componentWillMount(){
+    const resInfo = localStorage.resInfo;
+    console.log(resInfo);
+  }
+
+  // componentDidUpdate(prevProps, prevState){
+  //   if(JSON.stringify(prevState.resInfo) !== JSON.stringify(this.state.resInfo)){
+  //     localStorage.resInfo = JSON.stringify(this.state.resInfo)
+  //   }
+  // }
+
 
   handleCreate = (data) => {
     const {resInfo} = this.state;
     this.setState({
       resInfo: resInfo.concat({id: this.id++, ...data})
     })
-    console.log(data);
   }
 
   handleRemove = (id) => {
@@ -100,7 +110,6 @@ class App extends Component {
   }
 
   render() {
-    const {resInfo} = this.state;
     return (
       <>
         <div className="text1">
