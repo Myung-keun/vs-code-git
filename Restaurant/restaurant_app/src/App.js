@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PaintTable from './paintTable';
 import PlusRes from './plusRes';
+import TableForm from './TableForm';
 
 
 const style = {
@@ -10,12 +10,89 @@ const style = {
 };
 
 class App extends Component {
+  id = 5
+  state = {
+    resInfo: [
+      {
+          resName:"오카에리",
+          resLoca:"봉은사로 44길 68",
+          resDis:"1분",
+          resMenu:"일식",
+          id:0
+      }, {
+          resName:"해변에서",
+          resLoca:"언주로98길 5-3",
+          resDis:"1분",
+          resMenu:"한식",
+          id:1
+      },{
+          resName:"담소",
+          resLoca:"선릉로86길 48",
+          resDis:"1분",
+          resMenu:"한식",
+          id:2 
+      },{
+          resName:"김가면옥",
+          resLoca:"언주로98길 9",
+          resDis:"1분",
+          resMenu:"한식",
+          id:3 
+      }, {
+          resName:"청운각",
+          resLoca:"언주로98길 21",
+          resDis:"5분",
+          resMenu:"중식",
+          id:4
+      }, {
+        resName:"매반생면",
+        resLoca:"언주로508 지하1층",
+        resDis:"5분",
+        resMenu:"한식",
+        id:5
+    }, {
+      resName:"어메이징 타이",
+      resLoca:"언주로98길 25",
+      resDis:"5분",
+      resMenu:"양식",
+      id:6
+    },{
+      resName:"포하임",
+      resLoca:"선릉로86길 15",
+      resDis:"5분",
+      resMenu:"양식",
+      id:7
+    }, {
+      resName:"동해식당",
+      resLoca:"역삼동 700-22",
+      resDis:"5분",
+      resMenu:"한식",
+      id:8
+    }, {
+      resName:"코우",
+      resLoca:"언주로98길 23",
+      resDis:"5분",
+      resMenu:"일식",
+      id:9
+    }, {
+      resName:"쌈밥",
+      resLoca:"동해식당 옆",
+      resDis:"5분",
+      resMenu:"한식",
+      id:10
+    }
+    ]
+  }
 
 
   handleCreate = (data) => {
+    const {resInfo} = this.state;
+    this.setState({
+      resInfo: resInfo.concat({id: this.id++, ...data})
+    })
     console.log(data);
   }
   render() {
+    const {resInfo} = this.state;
     return (
       <>
         <div className="text1">
@@ -24,16 +101,16 @@ class App extends Component {
             선택된 식당들 중에서만 식당을 골라줍니다!!
       </h4>
         </div>
-        <div class="wrap">
+        <div className="wrap">
           <ul><li id="paging">전체 보기</li></ul>
-          <ul class="menu">
+          <ul className="menu">
             <li id="Korean">한식</li>
             <li id="Chinese">중식</li>
             <li id="Japanese">일식</li>
             <li id="Foreign">양식</li>
           </ul>
         </div>
-        <table class="mainTable">
+        <table className="mainTable">
           <thead>
             <tr>
               <td>식당 이름</td>
@@ -44,22 +121,23 @@ class App extends Component {
             </tr>
           </thead>
           <tbody id="list">
-            <PaintTable />
+            <PlusRes 
+            data = {this.state.resInfo}/>
           </tbody>
         </table>
-        <div class="pagenumbers" id="pagination">
+        <div className="pagenumbers" id="pagination">
 
         </div>
-        <div class="bt">
-          <button class="plus" style={style}>+</button>
+        <div className="bt">
+          <button className="plus" style={style}>+</button>
         </div>
-        <div class="addedTable">
-          <PlusRes onCreate={this.handleCreate} />
+        <div className="addedTable">
+          <TableForm onCreate={this.handleCreate} />          
         </div>
-        <div class="clickbox">
+        <div className="clickbox">
           <button id="clicks">이 중에 갈 식당은?</button>
         </div>
-        <div class="pagination"></div>
+        <div className="pagination"></div>
       </>
     );
   }

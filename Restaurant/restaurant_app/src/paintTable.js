@@ -2,40 +2,34 @@ import React, {Component} from 'react';
 
 class PaintTable extends Component{
     static defaultProps = {
-        resName: '식당이름',
-        resLoca: '식당위치',
-        resDis: '식당거리',
-        resMenu: '음식종류'
-    }
-
-    state = {
-        char: 'X'
-    }
+            resInfo : {
+                resName:"오카에리",
+                resLoca:"봉은사로 44길 68",
+                resDis:"1분",
+                resMenu:"일식",
+                id: 0
+            }
+        }
+    
 
     clickDelete = () => {
-        if (this.state.char === 'X') {
-            this.setState({
-                char: 'O'
-            })
-        } else if(this.state.char ==='O'){
-            this.setState({
-                char:'X'
-            })
-        }
+        console.log(this.props.resInfo);
     }
 
     render(){
+        const {resName, resLoca, resDis, resMenu, id} = this.props.resInfo;
         return(
             <tr>
-                <td>{this.props.resName}</td>
-                <td>{this.props.resLoca}</td>
-                <td>{this.props.resDis}</td>
-                <td>{this.props.resMenu}</td>
-                <button onClick={this.clickDelete}>{this.state.char}</button>
+                <td>{resName}</td>
+                <td>{resLoca}</td>
+                <td>{resDis}</td>
+                <td>{resMenu}</td>
+                <td><button onClick={this.clickDelete}>X</button></td>
             </tr>
         )
     }
 }
+
 
 
 export default PaintTable;
