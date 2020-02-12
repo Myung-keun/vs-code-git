@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="/style.css" type="text/css">
+        <title>Random Selection</title>
+    </head>
+    <body>
+        <div class="text1">
+            <h1>오늘의 점심메뉴는?</h1>
+            <h4>오늘 특별히 가고싶은 식당이 있다면 선택해주세요:)<br>
+                선택된 식당들 중에서만 식당을 골라줍니다!!</h4>
+        </div>
+        <div class="wrap">
+            <ul><li id="paging">전체 보기</li></ul>
+            <ul class="menu">
+                <li id="Korean">한식</li>
+                <li id="Chinese">중식</li>
+                <li id="Japanese">일식</li>
+                <li id="Foreign">양식</li>
+            </ul>
+        </div>
+        <hr/>
+        <table width="100%" border="1">
+            <tr>
+                <th>식당 이름</th>
+                <th>식당 위치</th>
+                <th>거리</th>
+                <th>메뉴</th>
+                
+            </tr>
+        <% resList.forEach(function(item, index){ %>
+            <tr>               
+                <td><%= item.name%></td>
+                <td><%= item.location%></td>
+                <td><%= item.leadTime%>분</td>
+                <td><%= item.menu%></td>
+                <td><button>X</button></td>
+            </tr>
+        <% }); %>
+        </table>
+    </body>
+</html>

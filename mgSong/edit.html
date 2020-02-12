@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit Page</title>
+</head>
+<body>
+	<h1>Edit Page</h1>
+	<form method='post'>
+		<fieldset>
+			<legend>EDIT DATA</legend>
+			<table>
+				<tr>
+					<td><lable>UUID</lable></td>
+					<td><input type="text" name="id" value="<%= testDB.Restaurant.id  %>" disable /></td>
+				</tr>			
+				<tr>
+					<td><lable>식당 이름</lable></td>
+					<td><input type="text" name="name" value="<%= Restaurant.name  %>" /></td>
+				</tr>
+				<tr>
+					<td><lable>식당 위치</lable></td>
+					<td><input type="text" name="location" value="<%= Restaurant.location %>" /></td>
+				</tr>
+				<tr>
+					<td><lable>메뉴</lable></td>
+					<td><input type="text" name="menu"  value="<%= Restaurant.menu %>" /></td>
+                </tr>
+                
+			</table>
+			<input type="submit" value="Update"/>
+		</fieldset>
+	</form>
+</body>
+</html>
